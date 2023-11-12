@@ -37,7 +37,7 @@ module.exports.search = async (req, res, next) => {
         const data = await searchPaintings(search);
         if (data && data.objectIDs) {
             nResults = data.objectIDs.length;
-            for (let i = 0; i < Math.min(15, data.objectIDs.length); i++) {
+            for (let i = 0; i < Math.min(18, data.objectIDs.length); i++) {
                 const objectId = data.objectIDs[i];
                 const post = await fetchPaintingDetails(objectId);
                 if (post) postList.push(post);

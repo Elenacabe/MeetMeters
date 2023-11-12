@@ -4,10 +4,10 @@
 
         <div class="col-md-6 whiteBG">
 
-            <h1>Registro</h1>
+            <h1>Log In</h1>
             <hr>
 
-            <form action="/auth/signUp" method="POST">
+            <form action="/auth/logIn" method="POST">
 
                 <div class="mb-3 row">
                     <div class="col">
@@ -22,18 +22,9 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="usernameInput" class="form-label">Nombre de usuario</label>
-                    <input type="text" class="form-control" id="usernameInput" name="username">
-                </div>
-
-                <div class="mb-3">
-                    <label for="descriptionInput" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="descriptionInput" rows="3" name="description"></textarea>
-                </div>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark block">Completar registro</button>
+                    <button type="submit" class="btn btn-dark block">Log in</button>
                 </div>
 
                 {{#if errorMessage}}

@@ -21,8 +21,8 @@ router.post('/signup', isLoggedOut, (req, res, next) => {
 
 
 // Login
-router.get('/iniciar-sesion', isLoggedOut, (req, res, next) => res.render('auth/login'))
-router.post('/iniciar-sesion', isLoggedOut, (req, res, next) => {
+router.get('/logIn', isLoggedOut, (req, res, next) => res.render('auth/login'))
+router.post('/logIn', isLoggedOut, (req, res, next) => {
 
     const { email, userPwd } = req.body
 
@@ -45,8 +45,8 @@ router.post('/iniciar-sesion', isLoggedOut, (req, res, next) => {
 
 
 // Logout
-router.post('/cerrar-sesion', isLoggedIn, (req, res, next) => {
-    req.session.destroy(() => res.redirect('/iniciar-sesion'))
+router.post('/logOut', isLoggedIn, (req, res, next) => {
+    req.session.destroy(() => res.redirect('/'))
 })
 
 module.exports = router

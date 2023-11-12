@@ -3,11 +3,33 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.mainP {
+  background-image: url("/images/ole.jpg");
+
+  margin-top: 49px;
+  background-size: cover;
+  padding-left: -30px;
+  margin-right: 0;
+  margin-left: 0;
+  padding-bottom: 758px;
+}
+
+.omg {
+  font-size: 3em;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-color: blanchedalmond;
+  margin-top: 40px;
+  border-radius: 13px;
+  padding: 10px;
+  text-align: center;
+}
+
 nav.navbar {
   top: 0;
   position: fixed;
   width: 100%;
   height: 49px;
+  z-index: 1;
 }
 
 .page-content {
@@ -15,9 +37,17 @@ nav.navbar {
   margin-top: 49px;
 }
 
+.coli {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .posts .card-img-top {
   max-height: 400px;
   max-width: 400px;
+  margin: 10px;
 }
 
 a {
