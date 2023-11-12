@@ -1,0 +1,25 @@
+<h2>Search Form</h2>
+<form method="get" action="/posts">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search..." name="search" aria-label="Search"
+            aria-describedby="searchButton" value="{{search}}">
+        <button class="btn btn-outline-primary" type="submit" id="searchButton">Search</button>
+    </div>
+</form>
+
+<div class="posts row">
+    {{#if search}}
+    {{#if nResults}}<p>We've found {{nResults}} results</p>
+    {{else}} <div class="alert alert-danger">No results were found</div> {{/if}}
+    {{/if}}
+    {{#each postList}}
+    <div class="card col-12 col-md-6 col-lg-4">
+        <img class="card-img-top" src="{{this.primaryImage}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <p class="card-text">{{this.artistDisplayName}} <br>{{this.artistDisplayBio}}</p>
+            <a href="/details/{{this.objectID}}" class="btn btn-primary">Go to details</a>
+        </div>
+    </div>
+    {{/each}}
+</div>
