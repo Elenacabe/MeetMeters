@@ -18,16 +18,16 @@
 
 
 
-        {{#if search}}
-        {{#if nResults}}<p>We've found {{nResults}} results</p>
-        {{else}} <div class="alert alert-danger">No results were found</div> {{/if}}
-        {{/if}}
+
+        {{!-- {{#if gallery.length }}<p>We've found {{gallery.length}} results</p>
+        {{else}} <div class="alert alert-danger">No results were found</div> {{/if}} --}}
+
         {{!-- <div class="
         
         
          row"> --}}
             <div class=" gallery row page-content">
-                {{#each galleryList}}
+                {{#each objectData}}
                 <div class="card col-6 col-md- col-lg-3 coli">
                     <img class="card-img-top" src="{{this.primaryImage}}" alt="{{this.title}}">
                     <div class="card-body">
@@ -37,9 +37,10 @@
                     </div>
                 </div>
                 {{/each}}
-                {{!--
-            </div> --}}
-        </div>
+
+            </div>
+            {{!--
+        </div> --}}
         {{!-- {{#if author}}
         <div class="gallery row">
             {{#if nResults}}<p>We've found {{nResults}} results</p>

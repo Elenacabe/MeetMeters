@@ -1,17 +1,25 @@
-const { default: axios } = require('axios');
+const axios = require('axios')
 
 const COLLECTIONAPI_URL = "https://collectionapi.metmuseum.org/public/collection/v1";
 
-class galleryService {
+class GalleryService {
     constructor() {
-        this.axiosApp.create({
+        this.axiosApp = axios.create({
             baseURL: COLLECTIONAPI_URL
         })
     }
-    getAllGallery() {
-        return this.axiosApp.get('/gallery')
+    getFullGallery() {
+        return this.axiosApp.get('/objects')
     }
+    findOneOfGalleryById(gallery_id) {
+        return this.axiosApp.get(`objects/${gallery_id}`)
+    }
+
+
 }
+const galleryService = new GalleryService()
+
+module.exports = galleryService
 
 
 
