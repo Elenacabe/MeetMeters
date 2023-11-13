@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const postSchema = new Schema({
+const gallerySchema = new Schema({
     meetId: {
         type: Number,
         required: true
@@ -33,6 +33,6 @@ const postSchema = new Schema({
 }
 )
 
-const Post = model("Post", postSchema);
+const Gallery = model("Gallery", gallerySchema);
 
 module.exports = Post;
