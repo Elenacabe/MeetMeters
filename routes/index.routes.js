@@ -16,6 +16,8 @@ module.exports = app => {
   app.use("/auth", authRoutes);
   const postRoutes = require("./post.routes")
   app.use("/posts", postRoutes)
+  const eventRoutes = require("./event.routes")
+  app.use("/events", eventRoutes)
 
 
 }

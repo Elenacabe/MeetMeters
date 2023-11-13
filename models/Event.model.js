@@ -33,7 +33,7 @@ const eventSchema = new Schema({
         type: {
             type: {
                 type: String,
-                enum: ["Point", "Polygon", "MultiPoint", "MultiPolygon", "LineString"],
+                enum: ["Point"],
                 required: true
             },
             coordinates: {
