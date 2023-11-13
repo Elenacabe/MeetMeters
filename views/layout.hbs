@@ -10,7 +10,8 @@
    <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
-<body>
+<body>;
+
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
          <a class="navbar-brand" href="/">{{siteTitle}}</a>
@@ -29,6 +30,15 @@
                <li class="nav-item">
                   <a class="nav-link" href="/events">Events</a>
                </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/profile/list">Check the community</a>
+               </li>
+
+               <li class="nav-item">
+                  <form action="/auth/logOut" method="POST">
+                     <button class="nav-link">LogOut</button>
+                  </form>
+               </li>
 
                <li class="nav-item">
                   <a class="nav-link" href="/auth/signUp">Sign Up</a>
@@ -37,11 +47,6 @@
                   <a class="nav-link" href="/auth/logIn">Log In</a>
                </li>
 
-               <li class="nav-item">
-                  <form action="/auth/logOut" method="POST">
-                     <button class="nav-link">LogOut</button>
-                  </form>
-               </li>
 
 
          </div>

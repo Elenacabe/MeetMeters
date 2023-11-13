@@ -5,26 +5,26 @@ const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard")
 const saltRounds = 10
 
 // Signup
-router.get('/signup', isLoggedOut, (req, res, next) => res.render('auth/signup'))
-router.post('/signup', isLoggedOut, (req, res, next) => {
+router.get('/signUp', (req, res, next) => res.render('auth/signup'))
+router.post('/signUp', (req, res, next) => {
 
-    const { email, userPwd, username, profileImg, description } = req.body
+    const { email, password, username, about } = req.body
 
     bcrypt
         .genSalt(saltRounds)
-        .then(salt => bcrypt.hash(userPwd, salt))
-        .then(hashedPassword => User.create({ email, username, profileImg, description, password: hashedPassword }))
-        .then(createdUser => res.redirect('/'))
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hashedPassword => User.create({ email, password: hashedPassword, username, about }))
+        .then(() => res.redirect('/'))
         .catch(error => next(error))
 })
 
 
 
 // Login
-router.get('/logIn', isLoggedOut, (req, res, next) => res.render('auth/login'))
-router.post('/logIn', isLoggedOut, (req, res, next) => {
+router.get('/logIn', (req, res, next) => res.render('auth/login'))
+router.post('/logIn', (req, res, next) => {
 
-    const { email, userPwd } = req.body
+    const { email, password } = req.body
 
     User
         .findOne({ email })
@@ -32,12 +32,12 @@ router.post('/logIn', isLoggedOut, (req, res, next) => {
             if (!user) {
                 res.render('auth/login', { errorMessage: 'Email no registrado en la Base de Datos' })
                 return
-            } else if (bcrypt.compareSync(userPwd, user.password) === false) {
+            } else if (bcrypt.compareSync(password, user.password) === false) {
                 res.render('auth/login', { errorMessage: 'La contraseña es incorrecta' })
                 return
             } else {
                 req.session.currentUser = user
-                res.redirect('/')
+                res.redirect('/posts')
             }
         })
         .catch(error => next(error))

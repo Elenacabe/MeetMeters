@@ -6,12 +6,12 @@ body {
 .mainP {
   background-image: url("/images/ole.jpg");
 
-  margin-top: 49px;
+  margin-top: 10px;
   background-size: cover;
   padding-left: -30px;
   margin-right: 0;
   margin-left: 0;
-  padding-bottom: 758px;
+  padding-bottom: 100vh
 }
 
 /* .bajito {

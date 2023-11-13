@@ -25,6 +25,8 @@ require("./routes/index")(app)
 
 require("./error-handling")(app);
 
+// Assuming you have Handlebars registered as 'Handlebars' in your script
+
 
 
 module.exports = app;
