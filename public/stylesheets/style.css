@@ -21,7 +21,7 @@ body {
 
 } */
 
-/* .bajito .posts {
+/* .bajito .gallery {
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 0;
@@ -57,7 +57,7 @@ nav.navbar {
   justify-content: space-around;
 }
 
-.posts .card-img-top {
+.gallery .card-img-top {
   max-height: 400px;
   max-width: 400px;
   margin: 10px;
