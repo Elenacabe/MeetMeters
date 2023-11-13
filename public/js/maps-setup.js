@@ -34,7 +34,7 @@ function printPlacesMarkers(events) {
 
         const position = { lat: elm.location.coordinates[1], lng: elm.location.coordinates[0] }
         new google.maps.Marker({
-            map: myMap,
+            map: nyMap,
             position,
             title: elm.name
         })

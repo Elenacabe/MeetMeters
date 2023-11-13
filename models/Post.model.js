@@ -16,10 +16,7 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    customVersionImgUrl: {
-        type: String
-    },
-    authorName: {
+    author: {
         type: String,
         required: true
     },
