@@ -14,9 +14,9 @@ function isValidGalleryId(galleryId) {
 //router.get("/author", galleryController.author);
 // router.get("/details/:_id", galleryController.id)
 
-router.get("/"), (req, res, next) => {
+router.get("/", (req, res, next) => {
     res.render('Gallery/galleryList')
-}
+})
 router.get("/search", (req, res, next) => {
     const { search } = req.query
 
