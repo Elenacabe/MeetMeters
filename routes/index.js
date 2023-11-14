@@ -20,6 +20,6 @@ module.exports = app => {
     app.use("/profile", profileRoutes)
     const galleryRoutes = require("./gallery.routes")
     app.use("/gallery", galleryRoutes)
-    // const eventRoutes = require("./event.routes")
-    // app.use("/events", eventRoutes)
+    const eventRoutes = require("./event.routes")
+    app.use("/events", eventRoutes)
 }
