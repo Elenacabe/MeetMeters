@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 // const galleryController = require("../controllers/gallery.controller");
 const GalleryService = require('../services/gallery.services');
+function isValidGalleryId(galleryId) {
+    return GalleryService.findOneOfGalleryById(galleryId)
+        .then(response => response.status === 200)
+        .catch(() => false);
+}
 // const gallery = require("../models/gallery.model")
 function isValidGalleryId(galleryId) {
     return GalleryService.findOneOfGalleryById(galleryId)
@@ -52,10 +57,6 @@ router.get("/search", (req, res, next) => {
             next(err);
             res.status(500).json({ err: 'Error getting objects of gallery' });
         });
-
-});
-
-
-
+})
 
 module.exports = router;

@@ -1,0 +1,66 @@
+<div class="container page-content ">
+
+    <div class="row justify-content-center ">
+
+        <div class="col-md-6 whiteBG">
+
+            <h1>Create an event</h1>
+            <hr>
+
+            <form action="/events/eventCreation" method="POST">
+
+                <div class="mb-3 row">
+
+
+
+                    <div class="mb-3">
+                        <label for="usernameInput" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="usernameInput" name="name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="descriptionInput" class="form-label">Describe your event</label>
+                        <textarea class="form-control" id="descriptionInput" rows="2" name="description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Start Date</label>
+                        <input type="date" class="form-control" id="" name="startDate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">End Date</label>
+                        <input type="date" class="form-control" id="" name="endDate">
+                    </div>
+                    <div>CAMPO DE LA IMAGEN</div>
+                    <label>Latitude
+                        <input name="latitude" type="text">
+                    </label>
+                    <br><br>
+
+                    <label>Longitude
+                        <input name="longitude" type="text">
+                    </label>
+                    <br>
+                    <br>
+                    <select name="type">
+                        <option value="free">Free</option>
+                        <option value="paid">Paid</option>
+                    </select>
+
+                    <hr>
+                    <br>
+                    <br>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-dark block">Complete</button>
+                    </div>
+
+                    {{#if errorMessage}}
+                    <div id="errorMessage">
+                        <p>{{errorMessage}}</p>
+                    </div>
+                    {{/if}}
+
+            </form>
+        </div>
+    </div>
+
+</div>

@@ -37,7 +37,7 @@ router.post('/logIn', (req, res, next) => {
                 return
             } else {
                 req.session.currentUser = user
-                res.redirect('/posts')
+                res.redirect('/gallery')
             }
         })
         .catch(error => next(error))
