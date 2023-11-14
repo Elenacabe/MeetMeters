@@ -9,11 +9,7 @@ function isValidGalleryId(galleryId) {
 }
 
 // const gallery = require("../models/gallery.model")
-function isValidGalleryId(galleryId) {
-    return GalleryService.findOneOfGalleryById(galleryId)
-        .then(response => response.status === 200)
-        .catch(() => false);
-}
+
 
 /* GET home page */
 // router.get("/", galleryController.search)
@@ -54,5 +50,18 @@ router.get("/search", (req, res, next) => {
             res.status(500).json({ err: 'Error getting objects of gallery' });
         });
 })
+router.get('/details/:objectID', (req, res, next) => {
+    const { objectID } = req.params
+    GalleryService
+        .findOneOfGalleryById(objectID)
+        .then(object => res.render('Gallery/details', object.data))
+        .catch(err => next(err))
+})
 
+
+
+router.get('/author', (req, res, next) => {
+    const { author } = req.query
+
+})
 module.exports = router;
