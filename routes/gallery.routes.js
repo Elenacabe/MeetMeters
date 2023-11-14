@@ -13,11 +13,14 @@ function isValidGalleryId(galleryId) {
 // router.get("/", galleryController.search)
 //router.get("/author", galleryController.author);
 // router.get("/details/:_id", galleryController.id)
-router.get('/', (req, res, next) => {
+
+router.get("/"), (req, res, next) => {
     res.render('Gallery/galleryList')
-})
+}
 router.get("/search", (req, res, next) => {
-    const { search } = req.query;
+    const { search } = req.query
+
+
 
     GalleryService
         .findOneOfGalleryByTitle(search)
@@ -49,6 +52,10 @@ router.get("/search", (req, res, next) => {
             next(err);
             res.status(500).json({ err: 'Error getting objects of gallery' });
         });
+
 });
+
+
+
 
 module.exports = router;
