@@ -12,9 +12,13 @@ class GalleryService {
         return this.axiosApp.get('/objects')
     }
     findOneOfGalleryById(gallery_id) {
-        return this.axiosApp.get(`objects/${gallery_id}`)
+        console.log("que es estooooooooooooooooooooooooooooooooooooooooooooooooooo", gallery_id)
+        return this.axiosApp.get(`/objects/${gallery_id}`)
+        // 
     }
-
+    findOneOfGalleryByTitle(gallery_title) {
+        return this.axiosApp.get(`/search?q=${gallery_title}`)
+    }
 
 }
 const galleryService = new GalleryService()
