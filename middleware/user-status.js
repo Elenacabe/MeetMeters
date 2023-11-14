@@ -1,7 +1,9 @@
-const userStatus = (req, res, next) => {
-    res.locals.loggedUser = req.session.currentUser
-    //   
-    next()
+const updateLoggedUser = (req, res, next) => {
+    if (req.session && req.session.currentUser) {
+        res.locals.logged = true;
+    } else {
+        res.locals.logged = false;
+    }
+    return (res.locals.logged)
 }
-
-module.exports = { userStatus }
+module.exports = { updateLoggedUser };

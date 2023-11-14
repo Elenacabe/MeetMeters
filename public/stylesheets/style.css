@@ -11,7 +11,7 @@ body {
   padding-left: -30px;
   margin-right: 0;
   margin-left: 0;
-  padding-bottom: 100vh
+  overflow: hidden;
 }
 
 /* .bajito {
@@ -26,6 +26,9 @@ body {
   margin-right: 20px;
   margin-top: 0;
 } */
+#nyMap {
+  height: 500px;
+}
 
 .omg {
   font-size: 3em;

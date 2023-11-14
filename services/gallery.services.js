@@ -1,5 +1,4 @@
 const axios = require('axios');
-const { response } = require('express');
 
 const COLLECTIONAPI_URL = "https://collectionapi.metmuseum.org/public/collection/v1";
 
@@ -9,15 +8,15 @@ class GalleryService {
             baseURL: COLLECTIONAPI_URL
         })
     }
+
     getFullGallery() {
         return this.axiosApp.get('/objects')
-
     }
+
     findOneOfGalleryById(gallery_id) {
         return this.axiosApp.get(`/objects/${gallery_id}`)
-
-        // 
     }
+
     findOneOfGalleryByTitle(search) {
         console.log("----------------------esto es lo que llega al servicio", search)
         return this.axiosApp.get(`/search?isHighlight=true&&q=${search}`)

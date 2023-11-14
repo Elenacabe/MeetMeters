@@ -13,12 +13,12 @@ const app = express();
 
 require("./config")(app);
 
-const capitalize = require("./utils/capitalize");
-// const { userStatus } = require('./middleware/user-status')
-// app.use(userStatus)
+// const { updateLoggedUser } = require('./middleware/user-status')
+// app.use(updateLoggedUser)
+
 const projectName = "meetMeters";
 
-app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
+
 
 require('./config/session.config')(app)
 require("./routes/index")(app)
