@@ -2,17 +2,14 @@ const express = require('express');
 const router = express.Router();
 // const galleryController = require("../controllers/gallery.controller");
 const GalleryService = require('../services/gallery.services');
+const galleryService = require('../services/gallery.services');
 function isValidGalleryId(galleryId) {
     return GalleryService.findOneOfGalleryById(galleryId)
         .then(response => response.status === 200)
         .catch(() => false);
 }
 // const gallery = require("../models/gallery.model")
-function isValidGalleryId(galleryId) {
-    return GalleryService.findOneOfGalleryById(galleryId)
-        .then(response => response.status === 200)
-        .catch(() => false);
-}
+
 
 /* GET home page */
 // router.get("/", galleryController.search)
@@ -58,5 +55,18 @@ router.get("/search", (req, res, next) => {
             res.status(500).json({ err: 'Error getting objects of gallery' });
         });
 })
+router.get('/details/:objectID', (req, res, next) => {
+    const { objectID } = req.params
+    GalleryService
+        .findOneOfGalleryById(objectID)
+        .then(object => res.render('Gallery/details', object.data))
+        .catch(err => next(err))
+})
 
+
+
+router.get('/author', (req, res, next) => {
+    const { author } = req.query
+
+})
 module.exports = router;
