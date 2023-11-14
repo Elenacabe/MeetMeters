@@ -8,26 +8,41 @@ function isValidGalleryId(galleryId) {
         .catch(() => false);
 }
 // const gallery = require("../models/gallery.model")
-router.get("/", (req, res, next) =>
-    res.render('Gallery/galleryList'))
+function isValidGalleryId(galleryId) {
+    return GalleryService.findOneOfGalleryById(galleryId)
+        .then(response => response.status === 200)
+        .catch(() => false);
+}
+
 /* GET home page */
 // router.get("/", galleryController.search)
 //router.get("/author", galleryController.author);
 // router.get("/details/:_id", galleryController.id)
-router.get("/title", (req, res, next) => {
-    const { search } = req.query;
-    GalleryService.findOneOfGalleryByTitle(search)
+
+router.get("/"), (req, res, next) => {
+    res.render('Gallery/galleryList')
+}
+router.get("/search", (req, res, next) => {
+    const { search } = req.query
+
+
+
+    GalleryService
+        .findOneOfGalleryByTitle(search)
         .then(async result => {
-            console.log(result)
+            console.log("-----------------------esto es lo que llega al endpoint", result)
+
+
+
             const validGalleryIds = await Promise.all(
-                result.data.objectIDs.map(async galleryId => {
+                result.data.objectIDs.slice(0, 10).map(async galleryId => {
                     const isValid = await isValidGalleryId(galleryId);
                     return { galleryId, isValid };
                 })
             );
-            const filteredValidIds = validGalleryIds
-                .filter(({ isValid }) => isValid)
-                .map(({ galleryId }) => galleryId);
+
+            const filteredValidIds = validGalleryIds.filter(({ isValid }) => isValid).map(({ galleryId }) => galleryId);
+
             const picturesByTitle = await Promise.all(
                 filteredValidIds.map(async galleryId => {
                     return GalleryService.findOneOfGalleryById(galleryId)

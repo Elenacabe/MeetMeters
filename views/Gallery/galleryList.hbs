@@ -1,9 +1,9 @@
 <div class="container bajito">
     <div class="page-content">
         <h2>Search Form</h2>
-        <form method="get" action="/gallery/title">
+        <form method="get" action="/gallery/search">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search..." name="title" aria-label="Search"
+                <input type="text" class="form-control" placeholder="Search..." name="search" aria-label="Search"
                     aria-describedby="searchButton" value="{{search}}">
                 <button class="btn btn-outline-primary" type="submit" id="searchButton">Search by title</button>
             </div>
@@ -27,9 +27,7 @@
         
          row"> --}}
             <div class=" gallery row page-content">
-                {{!-- {{picturesByTitle}} --}}
                 {{#each picturesByTitle}}
-
                 <div class="card col-6 col-md- col-lg-3 coli">
                     <img class="card-img-top" src="{{primaryImage}}" alt="{{title}}">
                     <div class="card-body">

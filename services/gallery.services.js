@@ -18,9 +18,9 @@ class GalleryService {
 
         // 
     }
-    findOneOfGalleryByTitle(gallery_title) {
-        return this.axiosApp.get(`/search?title=true&q=${gallery_title}`)
-
+    findOneOfGalleryByTitle(search) {
+        console.log("----------------------esto es lo que llega al servicio", search)
+        return this.axiosApp.get(`/search?isHighlight=true&&q=${search}`)
     }
 
 }
