@@ -19,7 +19,6 @@ const projectName = "meetMeters";
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
 
-
 require('./config/session.config')(app)
 require("./routes/index")(app)
 
