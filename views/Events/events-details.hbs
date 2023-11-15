@@ -1,19 +1,24 @@
 <div class="container page-content">
     <h1>{{name}}</h1>
     <hr>
-    <div class="container">
-        <div class="row">
-            <div class="container">
-                {{cover}}
-                <p>{{description}}</p>
-                <p></p>
-            </div>
-            <div class="container">
-                {{#each comments}}
-                <p>{{this}}</p>
-                {{#each}}
-                <form action="/event/createComment"></form>
-            </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="{{cover}}" class="img-fluid" alt="Event Cover">
+            <h3 class="mt-3">{{description}}</h3>
+            <h4>{{type}}</h4>
+            <h4>{{startDate}}</h4>
+            <a href='/profile/details/{{owner}}'>Check the creator</a>
+        </div>
+        {{#each atendees}}
+        {{name}}{{/each}}
+        <div class="col-lg-6">
+            <h4>Comments</h4>
+            {{#each comments}}
+            <p>{{this}}</p>
+            {{/each}}
+            <form action="/event/createComment" class="mt-3">
+                <!-- Add your comment input fields and submit button here -->
+            </form>
         </div>
     </div>
 </div>
