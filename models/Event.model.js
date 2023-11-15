@@ -26,7 +26,7 @@ const eventSchema = new Schema({
     },
     cover: {
         type: String,
-        // required: true
+        required: true
     },
     location: {
         type: {

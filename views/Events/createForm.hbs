@@ -7,7 +7,7 @@
             <h1>Create an event</h1>
             <hr>
 
-            <form action="/events/eventCreation" method="POST">
+            <form action="/events/eventCreation" method="POST" enctype="multipart/form-data">
 
                 <div class="mb-3 row">
 
@@ -30,7 +30,10 @@
                         <label for="" class="form-label">End Date</label>
                         <input type="date" class="form-control" id="" name="endDate">
                     </div>
-                    <div>CAMPO DE LA IMAGEN</div>
+                    <div class="mb-3">
+                        <label for="cover" class="form-label">Poster</label>
+                        <input type="file" class="form-control" id="cover" name="cover">
+                    </div>
                     <label>Latitude
                         <input name="latitude" type="text">
                     </label>

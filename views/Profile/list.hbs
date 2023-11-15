@@ -4,12 +4,18 @@
         <div class="center">
             <div class="col">
                 {{#each user}}
-                <ul class="list-group list-group-horizontal mb-1">
-                    <li class="list-group-item ">{{this.username}}</li>
-                    <li class="list-group-item "><a href="/profile/details/{{_id}}">View details</a></li>
+                <ul class="list-group justify-content-evenly mb-1">
+
+                    <div class="row">
+
+                        <li class="list-group-item col ">{{this.username}}</li>
+                        <li class="list-group-item col">{{this.role}}</li>
+                        <li class="list-group-item  col"><a href="/profile/details/{{_id}}">View details</a></li>
+                    </div>
 
                 </ul>
                 {{/each}}
+
             </div>
         </div>
 

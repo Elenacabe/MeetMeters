@@ -3,6 +3,24 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.marginIm {
+  margin: 18px;
+  border-radius: 4px;
+  max-width: 250px;
+  max-height: 500px;
+  align-items: center;
+}
+
+.marginR {
+  margin-right: 10px;
+  margin-bottom: 30px;
+}
+
+.imgList {
+  max-width: 60px;
+  max-height: 40px;
+}
+
 .mainP {
   background-image: url("/images/ole.jpg");
 

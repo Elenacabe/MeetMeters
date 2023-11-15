@@ -1,7 +1,28 @@
 <div class="page-content">
+    <div class="container"><a class="btn btn-dark" href="/events/events-create">Create an event</a></div>
     <hr>
-    <hr>
-    <hr>
-    ///////////lista de eventos
-    <a href="/events/events-create">Create an event</a>
+    <div class="container">
+
+        <div class="row">
+
+
+
+            {{#each event}}
+            <div class="card col-md-3 col-lg-3 marginR mr-2">
+
+                <img src="{{this.cover}}" class="card-img-top marginIm" alt="{{this.name}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.name}}</h5>
+                    <p class="card-text">{{this.description}}</p>
+                    <p class="card-text"><small class="text-muted">{{this.startDate}}-{{this.endDate}}</small>
+                    </p>
+                    <p class="card-text">The subscription is {{this.type}}</p>
+                </div>
+            </div>
+            {{/each}}
+
+
+
+        </div>
+    </div>
 </div>
