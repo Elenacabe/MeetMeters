@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const Event = require("../models/Event.model")
-const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard")
+const { isLoggedOut, isLoggedIn, checkRole } = require("../middleware/route-guard")
 const uploaderMiddleware = require('../middleware/uploader-middleware')
 const User = require("../models/User.model")
 const atendeesOnEvent = require("../utils/event-asistant")
@@ -11,21 +11,21 @@ const Comment = require("../models/Comment.model")
 router.get('/', isLoggedIn, (req, res, next) => {
     Event
         .find()
-        .then(events => res.render('Events/events', {
-            event: events,
-        }
-
-        ))
-        .catch(err => console.log(err))
+        .then(events => {
+            res.render('Events/events', {
+                events,
+            })
+        })
+        .catch(err => next(err))
 })
 
 
+router.get('/events-create', isLoggedIn, checkRole('ADMIN', 'GUIDE'), (req, res, next) => {
+    res.render('events/createForm')
+})
 
-router.get('/events-create', isLoggedIn, (req, res, next) =>
-    res.render('events/createForm'))
 
-
-router.post("/eventCreation", uploaderMiddleware.single('cover'), (req, res, next) => {
+router.post("/eventCreation", uploaderMiddleware.single('cover'), isLoggedIn, checkRole('ADMIN', 'GUIDE'), (req, res, next) => {
 
     const { path: cover } = req.file
     const { name, description, startDate, endDate, latitude, longitude, type } = req.body

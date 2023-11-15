@@ -47,13 +47,11 @@
                         </div>
                     </form>
                 </div>
-
-
                 {{/if}}
                 {{#if isAdmin}}
                 <div class="col md-4 ">
 
-                    <form class="mt-4" action="/profile/edit/{{user._id}}" method="POST">
+                    <form class="mt-4" action="/profile/edit/rol/{{user._id}}" method="POST">
                         <select name="role">
                             <option value="USER">USER</option>
                             <option value="GUIDE">GUIDE</option>
