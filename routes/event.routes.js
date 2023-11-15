@@ -4,6 +4,7 @@ const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard")
 const uploaderMiddleware = require('../middleware/uploader-middleware')
 const User = require("../models/User.model")
 const atendeesOnEvent = require("../utils/event-asistant")
+const Comment = require("../models/Comment.model")
 
 
 
@@ -59,9 +60,32 @@ router.get('/details/:event_id', isLoggedIn, (req, res, next) => {
 
     Event
         .findById(event_id)
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'author', // Suponiendo que 'author' es el campo que contiene la información del autor dentro de 'comments'
+                model: 'User'
+            }
+        })
+        .then()
         .then(event => res.render(`Events/events-details`, event))
         .catch(err => next(err))
 })
 
+router.post('/:event_id/createComment', isLoggedIn, (req, res, next) => {
 
+    const { event_id } = req.params
+    const { comment } = req.body
+    const author_id = req.session.currentUser._id
+
+
+    Comment
+        .create(({ comment, author: author_id }))
+        .then(commentCreated => Event.findByIdAndUpdate(event_id, { $push: { comments: commentCreated._id } }))
+        .then(() => res.redirect(`/events/details/${event_id}`))
+        .catch(err => next(err))
+
+
+
+})
 module.exports = router

@@ -47,6 +47,9 @@ class GalleryService {
             })
             .catch(err => console.log('Error en el servicio!!!!!!!!!!!!!!!!!!!!!!!!', err))
     }
+    findByAuthor() {
+
+    }
 }
 const galleryService = new GalleryService()
 

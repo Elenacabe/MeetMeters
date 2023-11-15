@@ -3,16 +3,31 @@
     <hr>
     <div class="container">
         <div class="row">
-            <div class="container">
-                {{cover}}
+            <div class="col-6">
+                <img src="{{cover}}" alt="">
                 <p>{{description}}</p>
                 <p></p>
             </div>
-            <div class="container">
-                {{#each comments}}
-                <p>{{this}}</p>
-                {{#each}}
-                <form action="/event/createComment"></form>
+            <div class="col-6">
+                <div style="height: 400px; overflow-y:scroll">
+                    {{#each comments}}
+                    <h4>{{comment}}</h4>
+                    <p>by {{author.username}}</p>
+                    {{/each}}
+                </div>
+                <div class="container">
+                    <div class="row d-flex">
+                        <form action="/events/{{id}}/createComment" method="POST">
+                            <div class="col-md-9">
+                                <label for="comment" class="form-label">comment here</label>
+                                <input type="text" class="form-control" id="comment" name="comment">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-info">comment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
