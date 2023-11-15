@@ -1,4 +1,5 @@
 const axios = require('axios');
+const isValidGalleryId = require('../utils/validId');
 
 const COLLECTIONAPI_URL = "https://collectionapi.metmuseum.org/public/collection/v1";
 
@@ -18,14 +19,34 @@ class GalleryService {
     }
 
     findOneOfGalleryByTitle(search) {
-
         return this.axiosApp.get(`/search?isHighlight=true&&q=${search}`)
     }
     findOneOfGalleryByAuthor(author) {
         console.log("----------------------esto es lo que llega al servicio", author)
         return this.axiosApp.get(`/search?isHighligth=true&&q=${author}`)
     }
+    findByTitle(search, quantity) {
 
+        return this.findOneOfGalleryByTitle(search)
+            .then(({ data }) => {
+                const selectedItems = data.objectIDs.slice(0, quantity)
+
+                const verifiedItems = selectedItems.map(elm => {
+                    return this.findOneOfGalleryById(elm)
+                        .then(response => response.data.objectID)
+                        .catch(() => false)
+                })
+
+                return Promise.all(verifiedItems)
+            })
+            .then(response => {
+                const existingItems = response.filter(itemExists => itemExists)
+                const itemsDetails = existingItems.map(itemId => this.findOneOfGalleryById(itemId))
+
+                return Promise.all(itemsDetails)
+            })
+            .catch(err => console.log('Error en el servicio!!!!!!!!!!!!!!!!!!!!!!!!', err))
+    }
 }
 const galleryService = new GalleryService()
 

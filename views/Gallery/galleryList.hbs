@@ -27,9 +27,11 @@
         
          row"> --}}
             <div class=" gallery row page-content">
-                {{#each picturesByTitle}}
+                {{#each pictures}}
                 <div class="card col-6 col-md-3 col-lg-3 coli">
-                    <img class="card-img-top" src="{{primaryImage}}" alt="{{title}}">
+                    <img class="card-img-top" src="{{primaryImage}}"
+                        placeholder="https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
+                        alt="{{title}}">
                     <div class="card-body">
                         <h5 class="card-title">{{title}}</h5>
                         <p class="card-text">{{artistDisplayName}} <br>{{artistDisplayBio}}</p>

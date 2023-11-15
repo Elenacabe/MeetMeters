@@ -41,7 +41,11 @@ const eventSchema = new Schema({
         type: String,
         required: true,
         enum: ["free", "paid"]
-    }
+    },
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }],
 }, {
     timeStamps: true
 }
