@@ -24,32 +24,25 @@ router.get("/search", (req, res, next) => {
 
     GalleryService
         .findOneOfGalleryByTitle(search)
-        .then(async result => {
+        .then(({ data }) => {
+            const selectedItems = data.objectIDs.slice(0, 50)
+            const verifiedItems = selectedItems.map(elm => isValidGalleryId(elm))
 
-            const allPromises = result.data.objectIDs.slice(0, 10).map(async galleryId => {
-                const isValid = await isValidGalleryId(galleryId)
-                return { galleryId, isValid }
-            })
-
-            const validGalleryIds = await Promise.all(allPromises)
-
-            const filteredValidIds = validGalleryIds.filter(({ isValid }) => isValid).map(({ galleryId }) => galleryId)
-
-            const picturesByTitle = await Promise.all(
-                filteredValidIds.map(async galleryId => {
-                    return GalleryService.findOneOfGalleryById(galleryId)
-                        .then(response => response.data)
-                        .catch(err => Promise.reject(err));
-                })
-            );
-
-            res.render('Gallery/galleryList', { picturesByTitle });
+            return Promise.all(verifiedItems)
         })
-        .catch(err => {
-            next(err);
-            res.status(500).json({ err: 'Error getting objects of gallery' });
-        });
-})
+        .then(response => {
+            const existingItems = response.filter(itemExists => itemExists)
+            const itemsDetails = existingItems.map(itemId => GalleryService.findOneOfGalleryById(itemId))
+
+            return Promise.all(itemsDetails)
+        })
+        .then(response => {
+            const picturesByTitle = response.map(elm => elm.data)
+            res.render('Gallery/galleryList', { picturesByTitle })
+        })
+        .catch(err => next(err))
+});
+
 router.get('/details/:objectID', (req, res, next) => {
     const { objectID } = req.params
     GalleryService

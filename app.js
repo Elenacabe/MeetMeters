@@ -1,32 +1,17 @@
+require("dotenv").config()
+require("./db")
 
-require("dotenv").config();
+const express = require("express")
+const app = express()
 
-require("./db");
-
-
-const express = require("express");
-
-const hbs = require("hbs");
-
-const app = express();
-
-
-require("./config")(app);
-
-// const { updateLoggedUser } = require('./middleware/user-status')
-// app.use(updateLoggedUser)
-
-const projectName = "meetMeters";
-
-
-
+require("./config")(app)
 require('./config/session.config')(app)
+
+const { updateLoggedUser } = require('./middleware/user-status')
+app.use(updateLoggedUser)
+
 require("./routes/index")(app)
-
-require("./error-handling")(app);
-
-// Assuming you have Handlebars registered as 'Handlebars' in your script
+require("./error-handling")(app)
 
 
-
-module.exports = app;
+module.exports = app

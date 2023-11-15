@@ -32,18 +32,6 @@ body {
   overflow: hidden;
 }
 
-/* .bajito {
-  margin-top: 50px;
-  margin-left: 30px;
-  justify-content: space-around;
-
-} */
-
-/* .bajito .gallery {
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 0;
-} */
 #nyMap {
   height: 500px;
 }
@@ -63,7 +51,6 @@ nav.navbar {
   position: fixed;
   width: 100%;
   height: 49px;
-  z-index: 1;
 }
 
 .page-content {
