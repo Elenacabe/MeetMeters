@@ -1,0 +1,19 @@
+<div class="container page-content">
+    <h1>{{name}}</h1>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                {{cover}}
+                <p>{{description}}</p>
+                <p></p>
+            </div>
+            <div class="container">
+                {{#each comments}}
+                <p>{{this}}</p>
+                {{#each}}
+                <form action="/event/createComment"></form>
+            </div>
+        </div>
+    </div>
+</div>

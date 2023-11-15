@@ -2,8 +2,12 @@ const router = require("express").Router()
 const Event = require("../models/Event.model")
 const { isLoggedOut, isLoggedIn, checkRole } = require("../middleware/route-guard")
 const uploaderMiddleware = require('../middleware/uploader-middleware')
-router.get('/', isLoggedIn, (req, res, next) => {
+const User = require("../models/User.model")
+const atendeesOnEvent = require("../utils/event-asistant")
 
+
+
+router.get('/', isLoggedIn, (req, res, next) => {
     Event
         .find()
         .then(events => {
@@ -33,6 +37,29 @@ router.post("/eventCreation", uploaderMiddleware.single('cover'), isLoggedIn, ch
     Event
         .create({ cover, name, description, startDate, endDate, location, type })
         .then(() => res.redirect('/events'))
+        .catch(err => next(err))
+})
+
+router.post('/add/:event_id', isLoggedIn, (req, res, next) => {
+
+    const { event_id } = req.params
+    const currentUser = req.session.currentUser
+
+
+    Event
+        .findById(event_id)
+        .then(event => atendeesOnEvent(currentUser, event))
+        .then(() => res.redirect(`/event/details/${event_id}`))
+        .catch(err => next(err))
+})
+
+router.get('/details/:event_id', isLoggedIn, (req, res, next) => {
+
+    const { event_id } = req.params
+
+    Event
+        .findById(event_id)
+        .then(event => res.render(`Events/events-details`, event))
         .catch(err => next(err))
 })
 

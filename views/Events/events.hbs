@@ -19,6 +19,10 @@
                     <p class="card-text"><small class="text-muted">{{this.startDate}}-{{this.endDate}}</small>
                     </p>
                     <p class="card-text">The subscription is {{this.type}}</p>
+                    <form action="/events/add/{{id}}" method="POST">
+                        <button type="submit" class="btn btn-info">Sign Up!!</button>
+                    </form>
+                    <a href="/events/details/{{id}}"><button type="button" class="btn btn-dark">Information</button></a>
                 </div>
             </div>
             {{/each}}
