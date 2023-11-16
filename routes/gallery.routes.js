@@ -81,15 +81,5 @@ router.post('/favorites/:_artId', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/unFavorites/:_artId', (req, res, next) => {
-
-    const { _artId } = req.params
-    const currentUser = req.session.currentUser._id
-
-    User
-        .findById(currentUser)
-        .then(user => user)
-})
-
 
 module.exports = router
