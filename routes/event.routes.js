@@ -9,6 +9,7 @@ const Comment = require("../models/Comment.model")
 
 
 router.get('/', isLoggedIn, (req, res, next) => {
+
     Event
         .find()
         .then(events => {
@@ -42,16 +43,45 @@ router.post("/eventCreation", uploaderMiddleware.single('cover'), isLoggedIn, ch
         .catch(err => next(err))
 })
 
-router.post('/add/:event_id', isLoggedIn, (req, res, next) => {
 
-    const { event_id } = req.params
+router.get('/edit/:_id', isLoggedIn, uploaderMiddleware.single('cover'), checkRole('ADMIN', 'GUIDE'), (req, res, next) => {
+    const { _id } = req.params
+
+    Event
+        .findById(_id)
+        .then(event => res.render('events/events-edit', event))
+        .catch(err => next(err))
+})
+
+
+router.post('/edit/:_id', isLoggedIn, uploaderMiddleware.single('cover'), checkRole('ADMIN', 'GUIDE'), (req, res, next) => {
+    const { _id } = req.params
+    const { path: cover } = req.file
+    const { name, description, latitude, longitude } = req.body
+    const owner = req.session.currentUser
+    const location = {
+        type: "Point",
+        coordinates: [longitude, latitude]
+    }
+
+    Event
+        .findByIdAndUpdate(_id, { cover, name, description, location, owner })
+        .then(event => res.redirect(`/events`,))
+        .catch(err => next(err))
+})
+
+
+
+router.post('/add/:_id', isLoggedIn, (req, res, next) => {
+
+    const { _id } = req.params
     const currentUser = req.session.currentUser
 
 
     Event
-        .findById(event_id)
+        .findById(_id)
         .then(event => atendeesOnEvent(currentUser, event))
-        .then(() => res.redirect(`/events/details/${event_id}`))
+        .then(() => res.redirect(`/events/details/${_id}`))
         .catch(err => next(err))
 })
 
@@ -60,7 +90,8 @@ router.get('/details/:_id', isLoggedIn, (req, res, next) => {
     const { _id } = req.params
 
     Event
-        .findById(event_id)
+        .findById(_id)
+
         .populate({
             path: 'comments',
             populate: {
@@ -68,8 +99,11 @@ router.get('/details/:_id', isLoggedIn, (req, res, next) => {
                 model: 'User'
             }
         })
-        .then()
-        .then(event => res.render(`Events/events-details`, event))
+
+        .then(event => res.render("Events/events-details",
+            event
+            // ,canEdit: req.session.currentUser._id === events.owner || req.session.currentUser.role === 'ADMIN'
+        ))
         .catch(err => next(err))
 })
 

@@ -36,6 +36,31 @@ body {
   height: 500px;
 }
 
+#theMap {
+  height: 280px;
+}
+
+.imgDet {
+  max-width: 400px;
+  max-height: 200px;
+}
+
+.maponchi {
+  border-radius: 12px;
+  border-width: 3px;
+  border-color: rgb(113, 113, 187);
+  border-style: solid;
+
+}
+
+.mapinchi {
+  border-radius: 12px;
+  border-width: 2px;
+  border-color: red;
+  border-style: solid;
+
+}
+
 .omg {
   font-size: 3em;
   font-family: Verdana, Arial, Helvetica, sans-serif;

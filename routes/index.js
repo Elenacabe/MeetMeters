@@ -12,6 +12,10 @@ module.exports = app => {
     const galleryRoutes = require("./gallery.routes")
     app.use("/gallery", galleryRoutes)
 
+    const apiRoutes = require("./api.routes")
+    app.use("/api", apiRoutes)
+
     const eventRoutes = require("./event.routes")
     app.use("/events", eventRoutes)
+
 }

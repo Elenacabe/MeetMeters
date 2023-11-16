@@ -1,11 +1,16 @@
 <div class="page-content">
 
     <div class="card col-12 col-md-6 col-lg-3 coli">
-        <img class="card-img-top" src="{{primaryImage}}" alt="{{title}}">
+        <img class="card-img-top" {{#if primaryImage}}src="{{primaryImage}}"
+            {{else}}src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900" {{/if}} alt="{{title}}">
         <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
             <p class="card-text">{{artistDisplayName}} <br>{{artistDisplayBio}} <br></p>
-            <p class="card-text">Department:{{department}} <br>Culture: {{culture}} <br></p>
+            <p class="card-text">
+            <h6>Department:</h6>{{#if department}}{{department}}{{else}}Not found{{/if}} <br>
+            <hr>
+            <h6>Culture:</h6>{{#if culture}}
+            {{culture}} {{else}} Not found{{/if}}<br></p>
             <a href="{{objectWikidata_URL}}" class="btn btn-dark block">Read about it in wikiPedia</a>
         </div>
     </div>

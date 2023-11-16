@@ -1,29 +1,41 @@
 <div class="container page-content">
     <h1>{{name}}</h1>
     <hr>
+    <input type="text" id="event_id" value="{{_id}}">
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <img src="{{cover}}" alt="">
-                <p>{{description}}</p>
-                <p></p>
+                <div class="row">
+                    <div class="col"><img class="imgDet" src="{{cover}}" alt=""></div>
+                    <div class="col">
+                        <h4>{{description}}<h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <figure id="theMap" class="mt-5 maponchi"></figure>
+                </div>
+                {{#if result.rights}}
+                <a href="/events/edit/{{id}}"><button type="button" class="btn btn-dark mt-3">Edit</button></a>
+                {{/if}}
+
             </div>
             <div class="col-6">
                 <div style="height: 400px; overflow-y:scroll">
                     {{#each comments}}
                     <h4>{{comment}}</h4>
-                    <p>by {{author.username}}</p>
+                    <p>by <a href="/profile/details/{{author.id}}">{{author.username}}</a> </p>
                     {{/each}}
                 </div>
                 <div class="container">
                     <div class="row d-flex">
                         <form action="/events/{{id}}/createComment" method="POST">
                             <div class="col-md-9">
-                                <label for="comment" class="form-label">comment here</label>
+                                <label for="comment" class="form-label">Comment here</label>
                                 <input type="text" class="form-control" id="comment" name="comment">
                             </div>
                             <div class="col-md-3">
-                                <button type="submit" class="btn btn-info">comment</button>
+                                <button type="submit" class="btn btn-outline-dark mt-3">comment</button>
                             </div>
                         </form>
                     </div>
@@ -32,3 +44,7 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/eventmaps-setup.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?callback=init&key=AIzaSyAXrluxt6edH6GHzswvJd_nckU_vPeBjzc"></script>
