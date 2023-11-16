@@ -3,6 +3,8 @@ const router = express.Router()
 // const galleryController = require("../controllers/gallery.controller")
 const GalleryService = require('../services/gallery.services')
 const isValidGalleryId = require('../utils/validId')
+const User = require('../models/User.model')
+const userFavorities = require('../utils/favorites')
 
 
 // const gallery = require("../models/gallery.model")
@@ -34,10 +36,23 @@ router.get('/details/:objectID', (req, res, next) => {
         .catch(err => next(err))
 })
 
-
+router.post('/favorites/:art_id', (req, res, next) => {
+    const { art_id } = req.params
+    const currentUser = req.session.currentUser._id
+    User
+        .findById(currentUser)
+        .then(user => userFavorities(user, art_id))
+        .then(() => res.redirect('/gallery'))
+        .catch(err => next(err))
+})
 
 router.get('/author', (req, res, next) => {
     const { author } = req.query
-
+    const quantity = 50
+    GalleryService
+        .findByAuthor(author, quantity)
+        .then(picturesByAuthor => picturesByAuthor.map(e => e.data))
+        .then(pictures => res.render('Gallery/galleryList', { pictures }))
+        .catch(err => { next(err) })
 })
 module.exports = router

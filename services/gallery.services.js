@@ -23,7 +23,7 @@ class GalleryService {
     }
     findOneOfGalleryByAuthor(author) {
         console.log("----------------------esto es lo que llega al servicio", author)
-        return this.axiosApp.get(`/search?isHighligth=true&&q=${author}`)
+        return this.axiosApp.get(`/search?author=true&highlight=true&artistOrCulture=true&q=${author}`)
     }
     findByTitle(search, quantity) {
 
@@ -47,8 +47,27 @@ class GalleryService {
             })
             .catch(err => console.log('Error en el servicio!!!!!!!!!!!!!!!!!!!!!!!!', err))
     }
-    findByAuthor() {
+    findByAuthor(author, quantity) {
 
+        return this.findOneOfGalleryByAuthor(author)
+            .then(({ data }) => {
+                const selectedItems = data.objectIDs.slice(0, quantity)
+
+                const verifiedItems = selectedItems.map(elm => {
+                    return this.findOneOfGalleryById(elm)
+                        .then(response => response.data.objectID)
+                        .catch(() => false)
+                })
+
+                return Promise.all(verifiedItems)
+                    .then(response => {
+                        const existingItems = response.filter(itemExists => itemExists)
+                        const itemsDetails = existingItems.map(itemId => this.findOneOfGalleryById(itemId))
+
+                        return Promise.all(itemsDetails)
+                    })
+                    .catch(err => console.log('Error en el servicio!!!!!!!!!!!!!!!!!!!!!!!!', err))
+            })
     }
 }
 const galleryService = new GalleryService()

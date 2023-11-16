@@ -55,9 +55,9 @@ router.post('/add/:event_id', isLoggedIn, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get('/details/:_id', isLoggedIn, (req, res, next) => {
+router.get('/details/:event_id', isLoggedIn, (req, res, next) => {
 
-    const { _id } = req.params
+    const { event_id } = req.params
 
     Event
         .findById(event_id)

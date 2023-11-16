@@ -36,6 +36,9 @@
                         <h5 class="card-title">{{title}}</h5>
                         <p class="card-text">{{artistDisplayName}} <br>{{artistDisplayBio}}</p>
                         <a href="/gallery/details/{{objectID}}" class="btn btn-dark block">Go to details</a>
+                        <form action="/gallery/favorites/{{objectID}}" method="POST">
+                            <button type="submit" class="btn btn-info mt-3"> add to favorites</button>
+                        </form>
                     </div>
                 </div>
                 {{/each}}
