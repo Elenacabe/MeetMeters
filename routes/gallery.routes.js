@@ -13,23 +13,23 @@ router.get("/", (req, res, next) => {
 router.get("/search", (req, res, next) => {
     const { search } = req.query
     const quantity = 50
-    const user = req.session.currentUser.favorites
+    const userFav = req.session.currentUser.favorites
     GalleryService
         .findByTitle(search, quantity)
         .then(picturesByTitle => picturesByTitle.map(e => e.data))
-        .then(pictures => pictures.forEach(elm => {
+        .then(pictures => {
+            const picturesFav = pictures.map(elm => {
 
-
-            user.forEach((fav) => {
-                if (fav == elm) {
-                    console.log("LETE!!!!!!!!!!!")
-                } else {
-                    console.log("NOLE!!!!!!!!!!!")
+                return {
+                    ...elm,
+                    isFav: userFav.includes(elm.objectID.toString().slice())
                 }
             })
 
-        }))
-        .then(pictures => console.log(pictures))
+            return picturesFav
+
+        })
+        .then(pictures => res.render('Gallery/gallerylist', ({ pictures })))
         .catch(err => { next(err) })
 })
 
