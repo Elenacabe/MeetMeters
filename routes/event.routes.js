@@ -90,7 +90,7 @@ router.get('/details/:event_id', isLoggedIn, (req, res, next) => {
     const { event_id } = req.params
 
     Event
-        .findById(_id)
+        .findById(event_id)
 
         .populate({
             path: 'comments',
