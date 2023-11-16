@@ -33,10 +33,13 @@ const userSchema = new Schema(
             type: String,
             enum: ['GUIDE', 'USER', 'ADMIN'],
             default: 'USER'
-        }
+        },
+        favorites: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Gallery'
+        }]
     },
     {
-        // this second object adds extra properties: `createdAt` and `updatedAt`    
         timestamps: true
     }
 );
