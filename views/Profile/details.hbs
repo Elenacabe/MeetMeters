@@ -50,9 +50,11 @@
                     {{!--
                 </div> --}}
                 {{#each favoritesItems}}
-                <img class="imgFav mt-4 mr-3" {{#if primaryImage}}src="{{primaryImage}}"
-                    {{else}}src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900" {{/if}}
-                    alt="{{title}}">
+                {{#if primaryImage}}
+                <a href="/gallery/details/{{objectID}}"><img class="imgFav mt-4 mr-3" src="{{primaryImage}}"> </a>
+                {{else}} <a href="/gallery/details/{{objectID}}"><img class="imgFav mt-4 mr-3"
+                        src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900"
+                        alt="{{title}}"></a>{{/if}}
                 {{/each}}
 
             </div>
