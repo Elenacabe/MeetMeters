@@ -67,10 +67,12 @@
                         <option value="GUIDE">GUIDE</option>
                         <option value="ADMIN">ADMIN</option>
                     </select>
-                    <input type="submit" class="btn btn-dark block" value="Change role">
-                </form>
+                    <input type="submit" class="btn btn-dark block btn-sm" value="Change role">
+                </form>{{/if}}
+                {{#if profile}}
+
                 <form action="/profile/delete/{{userById._id}}" method="POST" class="mt-2">
-                    <input type="submit" value="eliminar" class="btn btn-danger btn-sm">
+                    <input type="submit" value="Delete" class="btn btn-danger btn-sm">
                 </form>
 
             </div>

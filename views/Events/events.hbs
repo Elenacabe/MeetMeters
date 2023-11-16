@@ -1,7 +1,9 @@
 <div class="page-content">
     {{#if result.rights}}
     <div class="container text-center"><a class="btn btn-dark mb-2" href="/events/events-create">Create an event</a>
-    </div>{{/if}}
+    </div>
+
+    {{/if}}
     <div class="container" style="overflow-y: scroll; width:80vw">
         <div class="row lalala text-center">
             {{#each events}}
@@ -15,12 +17,12 @@
                     </p>
                     <p class="card-text">The subscription is {{type}}</p>
                     <div class="row">
-                        <div class="col md-6">
+                        <div class="col md-4">
                             <form action="/events/add/{{id}}" method="POST">
                                 <button type="submit" class="btn btn-outline-dark mt-3">Sign Up!</button>
                             </form>
                         </div>
-                        <div class="col md-6">
+                        <div class="col md-4">
                             <a href="/events/details/{{_id}}"><button type="button"
                                     class="btn btn-dark mt-3">Details</button></a>
                         </div>

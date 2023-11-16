@@ -3,6 +3,9 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+
+
+
 .marginIm {
   margin: 18px;
   border-radius: 4px;
@@ -24,6 +27,7 @@ body {
   max-width: 60px;
   max-height: 40px;
 }
+
 
 .mainP {
   background-image: url("/images/ole.jpg");
@@ -70,9 +74,9 @@ body {
 }
 
 .omg {
-  font-size: 3em;
+  font-size: 2em;
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  background-color: blanchedalmond;
+  background-color: rgb(215, 215, 215);
   margin-top: 40px;
   border-radius: 13px;
   padding: 10px;

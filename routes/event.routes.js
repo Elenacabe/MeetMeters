@@ -69,7 +69,13 @@ router.post('/edit/:_id', isLoggedIn, uploaderMiddleware.single('cover'), checkR
         .then(event => res.redirect(`/events`,))
         .catch(err => next(err))
 })
-
+router.post('/delete/:_id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
+    const { _id } = req.params
+    Event
+        .findByIdAndDelete(_id)
+        .then(() => res.redirect('/events'))
+        .catch(err => next(err))
+})
 
 
 router.post('/add/:_id', isLoggedIn, (req, res, next) => {
