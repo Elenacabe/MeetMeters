@@ -35,7 +35,7 @@ const userSchema = new Schema(
             default: 'USER'
         },
         favorites: [{
-            type: Schema.Types.ObjectId,
+            type: Schema.Types.String,
             ref: 'Gallery'
         }]
     },
