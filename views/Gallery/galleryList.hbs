@@ -39,46 +39,35 @@
         {{#if pictures.length}}<p>Here are {{pictures.length}} results</p>
         {{else}} <div class="alert alert-danger">No results were found</div>{{/if}}
 
-        {{!-- {{#if gallery.length }}<p>We've found {{gallery.length}} results</p>
-        {{else}} <div class="alert alert-danger">No results were found</div> {{/if}} --}}
-        <div class="row text-center">
-            <a href="/gallery/details/{{objectID}}" style="font-size: 1em;" class="col-md-6 btn btn-dark mt-3">Go to
-                details</a>
-            <form class="col-md-6" action="/gallery/favorites/{{objectID}}" method="POST">
-                <button type="submit" class="btn btn-outline-dark mt-3" style="color: red; width: 100%;">
-                    ♥</button>
-                {{!-- <div class="
-        
-        
-         row"> --}}
-                    <div class=" gallery row page-content">
-                        {{#each pictures}}
-                        <div class="card col-6 col-md-3 col-lg-3 coli">
-                            <img class="card-img-top" {{#if primaryImage}}src="{{primaryImage}}"
-                                {{else}}src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900"
-                                {{/if}} alt="{{title}}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{title}}</h5>
-                                <p class="card-text">{{artistDisplayName}} <br>{{artistDisplayBio}}</p>
-                                <div class="row text-center">
-                                    <a href="/gallery/details/{{objectID}}" style="font-size: 1em;"
-                                        class="col-md-6 btn btn-dark mt-3">Go to details</a>
-                                    {{#unless isFav}}
-                                    <form class="col-md-6" action="/gallery/favorites/{{objectID}}" method="POST">
-                                        <button type="submit" class="btn btn-outline-dark mt-3"
-                                            style="color: red; width: 100%;">
-                                            ♥</button>
-                                        {{else}}
-                                        <form class="col-md-6" action="/gallery/unFavorites/{{objectID}}" method="POST">
-                                            <button type="submit" class="btn btn-outline-danger mt-3"> 💔</button>
-                                        </form>
-                                        {{/unless}}
-                                </div>
-                            </div>
-                        </div>
-                        {{/each}}
+
+
+        <div class=" gallery row page-content">
+            {{#each pictures}}
+            <div class="card col-6 col-md-3 col-lg-3 coli">
+                <img class="card-img-top" {{#if primaryImage}}src="{{primaryImage}}"
+                    {{else}}src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900" {{/if}}
+                    alt="{{title}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                    <p class="card-text">{{artistDisplayName}} <br>{{artistDisplayBio}}</p>
+                    <div class="row text-center">
+                        <a href="/gallery/details/{{objectID}}" style="font-size: 1em;"
+                            class="col-md-6 btn btn-dark mt-3">Go to details</a>
+                        {{#unless isFav}}
+                        <form class="col-md-5" action="/gallery/favorites/{{objectID}}" method="POST">
+                            <button type="submit" class="btn btn-outline-dark mt-3" style="color: red; width: 100%;">
+                                like ♥</button>
+                            {{else}}
+                            <form class="col-md-5" action="/gallery/unFavorites/{{objectID}}" method="POST">
+                                <button type="submit" class="btn btn-outline-danger mt-3"> dislike💔</button>
+                            </form>
+                            {{/unless}}
                     </div>
-
                 </div>
-
+            </div>
+            {{/each}}
         </div>
+
+    </div>
+
+</div>

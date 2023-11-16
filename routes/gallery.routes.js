@@ -47,7 +47,7 @@ router.post('/favorites/:_artId', (req, res, next) => {
     User
         .findById(currentUser)
         .then(user => userFavorities(user, _artId))
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect('/gallery'))
         .catch(err => next(err))
 })
 
