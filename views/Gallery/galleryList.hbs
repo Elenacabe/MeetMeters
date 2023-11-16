@@ -37,11 +37,15 @@
                         <h5 class="card-title">{{title}}</h5>
                         <p class="card-text">{{artistDisplayName}} <br>{{artistDisplayBio}}</p>
                         <a href="/gallery/details/{{objectID}}" class="btn btn-dark block">Go to details</a>
-                        {{#if pictures.isFavorite}}<form action="/gallery/favorites/{{objectID}}" method="POST">
-                            <button type="submit" class="btn btn-info mt-3"> add to favorites</button>
-                        </form>{{else}}<form action="/gallery/favorites/{{objectID}}" method="POST">
+                        {{#unless isFav}}
+                        <form action="/gallery/favorites/{{objectID}}" method="POST">
                             <button type="submit" class="btn btn-info mt-3"> add to favorites</button>
                         </form>
+                        {{else}}
+                        <form action="/gallery/unFavorites/{{objectID}}" method="POST">
+                            <button type="submit" class="btn btn-danger mt-3"> eliminate of fav</button>
+                        </form>
+                        {{/unless}}
                     </div>
                 </div>
                 {{/each}}
