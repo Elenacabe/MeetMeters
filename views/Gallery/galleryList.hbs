@@ -1,5 +1,6 @@
 <div class="container bajito">
     <div class="page-content">
+        {{#if result.logged}}
         <h2>Search Form</h2>
         <form method="get" action="/gallery/search">
             <div class="input-group mb-3">
@@ -15,57 +16,50 @@
                 <button class="btn btn-outline-primary" type="submit" id="searchButton">Search by author</button>
             </div>
         </form>
-
+        {{else}}
+        <h2>Search Form</h2>
+        <form method="get" action="/auth/logIn">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search..." name="search" aria-label="Search"
+                    aria-describedby="searchButton" value="{{search}}">
+                <button class="btn btn-outline-primary" type="submit" id="searchButton">Log in to search by
+                    title</button>
+            </div>
+        </form>
+        <form method="get" action="/auth/logIn">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search..." name="author" aria-label="Search"
+                    aria-describedby="searchButton" value="{{author}}">
+                <button class="btn btn-outline-primary" type="submit" id="searchButton">Log in to search by
+                    author</button>
+            </div>
+        </form>
+        {{/if}}
 
         {{#if pictures.length}}<p>Here are {{pictures.length}} results</p>
         {{else}} <div class="alert alert-danger">No results were found</div>{{/if}}
-
-        {{!-- {{#if gallery.length }}<p>We've found {{gallery.length}} results</p>
-        {{else}} <div class="alert alert-danger">No results were found</div> {{/if}} --}}
-
-        {{!-- <div class="
-        
-        
-         row"> --}}
-            <div class=" gallery row page-content">
-                {{#each pictures}}
-                <div class="card col-6 col-md-3 col-lg-3 coli">
-                    <img class="card-img-top" {{#if primaryImage}}src="{{primaryImage}}"
-                        {{else}}src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900" {{/if}}
-                        alt="{{title}}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{title}}</h5>
-                        <p class="card-text">{{artistDisplayName}} <br>{{artistDisplayBio}}</p>
-                        <a href="/gallery/details/{{objectID}}" class="btn btn-dark block">Go to details</a>
-                        <form action="/gallery/favorites/{{objectID}}" method="POST">
-                            <button type="submit" class="btn btn-info mt-3"> add to favorites</button>
+        <div class=" gallery row page-content">
+            {{#each pictures}}
+            <div class="card col-6 col-md-3 col-lg-3 coli">
+                <img class="card-img-top" {{#if primaryImage}}src="{{primaryImage}}"
+                    {{else}}src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900" {{/if}}
+                    alt="{{title}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                    <p class="card-text">{{artistDisplayName}} <br>{{artistDisplayBio}}</p>
+                    <div class="row text-center">
+                        <a href="/gallery/details/{{objectID}}" style="font-size: 1em;"
+                            class="col-md-6 btn btn-dark mt-3">Go to details</a>
+                        <form class="col-md-6" action="/gallery/favorites/{{objectID}}" method="POST">
+                            <button type="submit" class="btn btn-outline-dark mt-3" style="color: red; width: 100%;">
+                                ♥</button>
                         </form>
                     </div>
                 </div>
-                {{/each}}
-
             </div>
-            {{!--
-        </div> --}}
-        {{!-- {{#if author}}
-        <div class="gallery row">
-            {{#if nResults}}<p>We've found {{nResults}} results</p>
-            {{else}} <div class="alert alert-danger">No results were found</div> {{/if}}
-            {{/if}}
-            <div class="page-content">
-                {{#each postList}}
-                <div class="card col-12 col-md-6 col-lg-3 coli">
-                    <img class="card-img-top" src="{{this.primaryImage}}" alt="{{this.title}}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{this.title}}</h5>
-                        <p class="card-text">{{this.artistDisplayName}} <br>{{this.artistDisplayBio}}</p>
-                        <a href="/gallery/details/{{this.objectID}}" class="btn btn-dark block">Go to details</a>
-                    </div>
-                </div>
-                {{/each}}
+            {{/each}}
+        </div>
 
-            </div>
-        </div> --}}
     </div>
 
 </div>
