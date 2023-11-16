@@ -1,32 +1,33 @@
 <div class="container page-content">
     <h1>{{name}}</h1>
     <hr>
-    <input type="text" id="event_id" value="{{_id}}">
+    <input hidden type="text" id="event_id" value="{{_id}}"></input>
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <div class="row">
-                    <div class="col"><img class="imgDet" src="{{cover}}" alt=""></div>
-                    <div class="col">
-                        <h4>{{description}}<h4>
+                <div class="row ">
+                    <div class="col text-center"><img class="imgDet" src="{{cover}}" alt=""></div>
+                    <div class="col text-center">
+                        <h5>{{description}}<h5>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row ">
                     <figure id="theMap" class="mt-5 maponchi"></figure>
                 </div>
                 {{#if result.rights}}
-                <a href="/events/edit/{{id}}"><button type="button" class="btn btn-dark mt-3">Edit</button></a>
+                <a href="/events/edit/{{_id}}"><button type="button" class="btn btn-dark mt-3">Edit</button></a>
                 {{/if}}
 
             </div>
-            <div class="col-6">
-                <div style="height: 400px; overflow-y:scroll">
+            <div class="col-6 ml-2">
+                <ul class="list-group maponchi" style="height: 400px; overflow-y:scroll">
                     {{#each comments}}
-                    <h4>{{comment}}</h4>
+
+                    <li class="list-group-item list-group-item-success">{{comment}}</li>
                     <p>by <a href="/profile/details/{{author.id}}">{{author.username}}</a> </p>
                     {{/each}}
-                </div>
+                </ul>
                 <div class="container">
                     <div class="row d-flex">
                         <form action="/events/{{id}}/createComment" method="POST">
@@ -40,9 +41,12 @@
                         </form>
                     </div>
                 </div>
+
             </div>
+
         </div>
     </div>
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/eventmaps-setup.js"></script>

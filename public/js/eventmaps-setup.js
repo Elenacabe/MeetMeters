@@ -26,17 +26,22 @@ function renderMap() {
 
 
 function getMarkers() {
-    const id = document.querySelector('#event_id').value
-
+    const _id = document.querySelector('#event_id').value
+    console.log()
     axios
-        .get(`/api/events/details/${id}`)
-        .then(response => printEventsMarkers(response.data))
+        .get(`/api/events/details/${_id}`)
+        .then(response => {
+            console.log(response)
+            printEventsMarkers(response.data)
+        })
         .catch(err => console.log(err))
+
 }
 
 function printEventsMarkers(event) {
 
     const position = { lat: event.location.coordinates[1], lng: event.location.coordinates[0] }
+    console.log(event)
     new google.maps.Marker({
         map: theMap,
         position,

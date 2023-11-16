@@ -90,7 +90,7 @@ router.get('/details/:event_id', isLoggedIn, (req, res, next) => {
     const { event_id } = req.params
 
     Event
-        .findById(_id)
+        .findById(event_id)
 
         .populate({
             path: 'comments',
@@ -102,6 +102,7 @@ router.get('/details/:event_id', isLoggedIn, (req, res, next) => {
 
         .then(event => res.render("Events/events-details",
             event
+
             // ,canEdit: req.session.currentUser._id === events.owner || req.session.currentUser.role === 'ADMIN'
         ))
         .catch(err => next(err))
@@ -112,7 +113,6 @@ router.post('/:event_id/createComment', isLoggedIn, (req, res, next) => {
     const { event_id } = req.params
     const { comment } = req.body
     const author_id = req.session.currentUser._id
-
 
     Comment
         .create(({ comment, author: author_id }))
