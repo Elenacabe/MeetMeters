@@ -1,22 +1,18 @@
 <div class="page-content">
-
-    <div class="container"><a class="btn btn-dark" href="/events/events-create">Create an event</a></div>
-    <hr>
-
-    <div class="container">
-
-        <div class="row">
-
-
-
+    {{#if result.rights}}
+    <div class="container text-center"><a class="btn btn-dark mb-2" href="/events/events-create">Create an event</a>
+    </div>{{/if}}
+    <div class="container" style="overflow-y: scroll; width:80vw">
+        <div class="row lalala text-center">
             {{#each events}}
-            <div class="card col-md-3 col-lg-3 marginR mr-2">
+            <div class="card col-md-4 col-lg-4 mb-2" style="max-width: 300px; margin-right:60px;margin-bottom:20px">
 
-                <img src="{{cover}}" class="card-img-top marginIm" alt="{{this.name}}">
-                <div class="card-body">
+                <img src="{{cover}}" class="card-img-top mt-2 cardContent" alt="{{this.name}}">
+                <div class="card-body cardContent">
                     <h5 class="card-title">{{name}}</h5>
                     <p class="card-text">{{tdescription}}</p>
-                    <p class="card-text"><small class="text-muted">{{startDate}}-{{endDate}}</small></p>
+                    <p class="card-text"><small class="text-muted">{{startDate}}</small>
+                    </p>
                     <p class="card-text">The subscription is {{type}}</p>
                     <div class="row">
                         <div class="col md-6">
@@ -25,16 +21,13 @@
                             </form>
                         </div>
                         <div class="col md-6">
-                            <a href="/events/details/{{id}}"><button type="button"
-                                    class="btn btn-dark mt-3">Information</button></a>
+                            <a href="/events/details/{{_id}}"><button type="button"
+                                    class="btn btn-dark mt-3">Details</button></a>
                         </div>
                     </div>
                 </div>
             </div>
             {{/each}}
-
-
-
         </div>
     </div>
 </div>

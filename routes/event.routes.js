@@ -112,7 +112,6 @@ router.post('/:event_id/createComment', isLoggedIn, (req, res, next) => {
     const { comment } = req.body
     const author_id = req.session.currentUser._id
 
-
     Comment
         .create(({ comment, author: author_id }))
         .then(commentCreated => Event.findByIdAndUpdate(event_id, { $push: { comments: commentCreated._id } }))
