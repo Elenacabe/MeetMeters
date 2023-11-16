@@ -8,7 +8,7 @@ const { response } = require("express")
 
 router.get("/list", isLoggedIn, (req, res, next) => {
 
-    let userById
+
     User
         .find()
         .then(users => res.render('Profile/list', { users }))

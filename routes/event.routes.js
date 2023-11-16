@@ -102,7 +102,6 @@ router.get('/details/:event_id', isLoggedIn, (req, res, next) => {
 
         .then(event => res.render("Events/events-details",
             event
-            // ,canEdit: req.session.currentUser._id === events.owner || req.session.currentUser.role === 'ADMIN'
         ))
         .catch(err => next(err))
 })
