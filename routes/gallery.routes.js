@@ -11,7 +11,6 @@ router.get("/", (req, res, next) => {
     res.render('Gallery/galleryList')
 })
 router.get("/search", (req, res, next) => {
-
     const { search } = req.query
     const quantity = 50
 
@@ -24,7 +23,6 @@ router.get("/search", (req, res, next) => {
 })
 
 router.get('/details/:objectID', (req, res, next) => {
-
     const { objectID } = req.params
     const userFav = req.session.currentUser.favorites
 
@@ -54,16 +52,13 @@ router.get('/author', (req, res, next) => {
 })
 
 router.post('/favorites/:_artId', (req, res, next) => {
-
     const { _artId } = req.params
     const currentUser = req.session.currentUser._id
-
     User
         .findById(currentUser)
         .then(user => userFavorities(user, _artId))
         .then(() => res.redirect(`/profile/details/${currentUser}`))
         .catch(err => next(err))
 })
-
 
 module.exports = router

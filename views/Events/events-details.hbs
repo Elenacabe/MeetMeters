@@ -9,15 +9,26 @@
                     <div class="col text-center"><img class="imgDet" src="{{cover}}" alt=""></div>
                     <div class="col text-center">
                         <h5>{{description}}<h5>
+                                <div class="row">
+                                    {{#if result.rights}}
+                                    <div class="col">
+                                        <a href="/events/edit/{{_id}}"><button type="button"
+                                                class="btn btn-dark mt-3">Edit</button></a>
+                                    </div>
+                                    <div class="col ">
+                                        <form action="/events/delete/{{_id}}" method="POST" class="mt-2">
+                                            <input type="submit" value="Delete" class="btn btn-danger mt-2">
+                                        </form>
+                                    </div>
+                                    {{/if}}
+                                </div>
                     </div>
                 </div>
 
                 <div class="row ">
                     <figure id="theMap" class="mt-5 maponchi"></figure>
                 </div>
-                {{#if result.rights}}
-                <a href="/events/edit/{{_id}}"><button type="button" class="btn btn-dark mt-3">Edit</button></a>
-                {{/if}}
+
 
             </div>
             <div class="col-6 ml-2">
