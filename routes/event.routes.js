@@ -10,13 +10,20 @@ const Comment = require("../models/Comment.model")
 
 router.get('/', isLoggedIn, (req, res, next) => {
 
+    const currentUser = req.session.currentUser._id
     Event
         .find()
-        .then(events => {
-            res.render('Events/events', {
-                events,
+        .then(allEvents => {
+            const events = allEvents.map(event => {
+                return {
+                    ...event._doc,
+                    isAtendees: event.atendees.includes(currentUser)
+                }
+
             })
+            return events
         })
+        .then(events => res.render('Events/events', { events }))
         .catch(err => next(err))
 })
 
@@ -45,6 +52,7 @@ router.post("/eventCreation", uploaderMiddleware.single('cover'), isLoggedIn, ch
 
 
 router.get('/edit/:_id', isLoggedIn, uploaderMiddleware.single('cover'), checkRole('ADMIN', 'GUIDE'), (req, res, next) => {
+
     const { _id } = req.params
 
     Event
@@ -55,6 +63,7 @@ router.get('/edit/:_id', isLoggedIn, uploaderMiddleware.single('cover'), checkRo
 
 
 router.post('/edit/:_id', isLoggedIn, uploaderMiddleware.single('cover'), checkRole('ADMIN', 'GUIDE'), (req, res, next) => {
+
     const { _id } = req.params
     const { path: cover } = req.file
     const { name, description, latitude, longitude } = req.body
@@ -97,9 +106,9 @@ router.get('/details/:event_id', isLoggedIn, (req, res, next) => {
             populate: {
                 path: 'author',
                 model: 'User'
-            }
-        })
+            },
 
+        })
         .then(event => res.render("Events/events-details",
             event
         ))
