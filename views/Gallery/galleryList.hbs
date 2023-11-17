@@ -51,15 +51,6 @@
                     <div class="row text-center">
                         <a href="/gallery/details/{{objectID}}" style="font-size: 1em;"
                             class="col-md-6 btn btn-dark mt-3">Go to details</a>
-                        {{#if isFav}}
-                        <form class="col-md-6" action="/gallery/favorites/{{objectID}}" method="POST">
-                            <button type="submit" class="btn btn-outline-danger mt-3"> 💔</button>
-                        </form>
-                        {{else}}
-                        <form class="col-md-6" action="/gallery/favorites/{{objectID}}" method="POST">
-                            <button type="submit" class="btn btn-outline-dark mt-3" style="color: red; width: 100%;">
-                                ♥</button>
-                            {{/if}}
                     </div>
                 </div>
             </div>

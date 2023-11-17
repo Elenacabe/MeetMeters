@@ -49,13 +49,15 @@
                     {{/if}}
                     {{!--
                 </div> --}}
-                {{#each favoritesItems}}
-                {{#if primaryImage}}
-                <a href="/gallery/details/{{objectID}}"><img class="imgFav mt-4 mr-3" src="{{primaryImage}}"> </a>
-                {{else}} <a href="/gallery/details/{{objectID}}"><img class="imgFav mt-4 mr-3"
-                        src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900"
-                        alt="{{title}}"></a>{{/if}}
-                {{/each}}
+                <p class="mt-4">Your favorites ArtWorks:</p>
+                <p>{{#each favoritesItems}}
+                    {{#if primaryImage}}
+                    <a href="/gallery/details/{{objectID}}"><img class="imgFav  mr-3" src="{{primaryImage}}"> </a>
+                    {{else}} <a href="/gallery/details/{{objectID}}"><img class="imgFav mt-4 mr-3"
+                            src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900"
+                            alt="{{title}}"></a>{{/if}}
+                    {{/each}}
+                </p>
 
             </div>
             {{#if isAdmin}}
