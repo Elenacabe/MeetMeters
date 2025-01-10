@@ -1,62 +1,125 @@
 <div class="container bajito">
-    <div class="page-content">
-        {{#if result.logged}}
-        <h2>Search Form</h2>
-        <form method="get" action="/gallery/search">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search..." name="search" aria-label="Search"
-                    aria-describedby="searchButton" value="{{search}}">
-                <button class="btn btn-outline-primary" type="submit" id="searchButton">Search by title</button>
-            </div>
-        </form>
-        <form method="get" action="/gallery/author">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search..." name="author" aria-label="Search"
-                    aria-describedby="searchButton" value="{{author}}">
-                <button class="btn btn-outline-primary" type="submit" id="searchButton">Search by author</button>
-            </div>
-        </form>
-        {{else}}
-        <h2>Search Form</h2>
-        <form method="get" action="/auth/logIn">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search..." name="search" aria-label="Search"
-                    aria-describedby="searchButton" value="{{search}}">
-                <button class="btn btn-outline-primary" type="submit" id="searchButton">Log in to search by
-                    title</button>
-            </div>
-        </form>
-        <form method="get" action="/auth/logIn">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search..." name="author" aria-label="Search"
-                    aria-describedby="searchButton" value="{{author}}">
-                <button class="btn btn-outline-primary" type="submit" id="searchButton">Log in to search by
-                    author</button>
-            </div>
-        </form>
-        {{/if}}
-
-        {{#if pictures.length}}<p>Here are {{pictures.length}} results</p>
-        {{else}} <div class="alert alert-danger">No results were found</div>{{/if}}
-
-        <div class=" gallery row page-content">
-            {{#each pictures}}
-            <div class="card col-6 col-md-3 col-lg-3 coli">
-                <img class="card-img-top" {{#if primaryImage}}src="{{primaryImage}}"
-                    {{else}}src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900" {{/if}}
-                    alt="{{title}}">
-                <div class="card-body">
-                    <h5 class="card-title">{{title}}</h5>
-                    <p class="card-text">{{artistDisplayName}} <br>{{artistDisplayBio}}</p>
-                    <div class="row text-center">
-                        <a href="/gallery/details/{{objectID}}" style="font-size: 1em;"
-                            class="col-md-6 btn btn-dark mt-3">Go to details</a>
-                    </div>
-                </div>
-            </div>
-            {{/each}}
+  <div class="page-content">
+    {{#if result.logged}}
+      <h2>Search Form</h2>
+      <form method="get" action="/gallery/search">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            name="search"
+            aria-label="Search"
+            aria-describedby="searchButton"
+            value="{{search}}"
+          />
+          <button
+            class="btn btn-outline-primary"
+            type="submit"
+            id="searchButton"
+          >Search by title</button>
         </div>
+      </form>
+      <form method="get" action="/gallery/author">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            name="author"
+            aria-label="Search"
+            aria-describedby="searchButton"
+            value="{{author}}"
+          />
+          <button
+            class="btn btn-outline-primary"
+            type="submit"
+            id="searchButton"
+          >Search by author</button>
+        </div>
+      </form>
+    {{else}}
+      <h2>Search Form</h2>
+      <form method="get" action="/auth/logIn">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            name="search"
+            aria-label="Search"
+            aria-describedby="searchButton"
+            value="{{search}}"
+          />
+          <button
+            class="btn btn-outline-primary"
+            type="submit"
+            id="searchButton"
+          >Log in to search by title</button>
+        </div>
+      </form>
+      <form method="get" action="/auth/logIn">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            name="author"
+            aria-label="Search"
+            aria-describedby="searchButton"
+            value="{{author}}"
+          />
+          <button
+            class="btn btn-outline-primary"
+            type="submit"
+            id="searchButton"
+          >Log in to search by author</button>
+        </div>
+      </form>
+    {{/if}}
 
+    {{#if hasSearched}}
+      {{#if pictures.length}}
+        <p>Here are {{pictures.length}} results</p>
+      {{else}}
+        <div class="alert alert-danger">No results were found</div>
+      {{/if}}
+    {{/if}}
+
+    <div class="row">
+      {{#each pictures}}
+        <div class="col-3 col-md-3 col-lg-3">
+          <div class="card">
+            {{#if primaryImage}}
+              <img
+                class="card-img-top"
+                src="{{primaryImage}}"
+                alt="{{title}}"
+              />
+            {{else}}
+              <img
+                class="card-img-top"
+                src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900"
+                alt="{{title}}"
+              />
+            {{/if}}
+            <div class="card-body">
+              <h5 class="card-title">{{title}}</h5>
+              <p class="card-text">{{artistDisplayName}}
+                <br />{{artistDisplayBio}}</p>
+              <div class="row text-center">
+                <a
+                  href="/gallery/details/{{objectID}}"
+                  style="font-size: 1em;"
+                  class="col-md-6 btn btn-dark mt-3"
+                >Go to details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
     </div>
+
+  </div>
 
 </div>

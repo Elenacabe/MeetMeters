@@ -1,16 +1,26 @@
-
 const updateLoggedUser = (req, res, next) => {
-    const result = {}
+  const result = {};
 
-    result.logged = req.session && req.session.currentUser
-    result.guide = req.session && req.session.currentUser && req.session.currentUser.role === "GUIDE"
-    result.admin = req.session && req.session.currentUser && req.session.currentUser.role === "ADMIN"
-    result.rights = req.session && req.session.currentUser && (req.session.currentUser.role === "GUIDE" || req.session.currentUser.role === "ADMIN")
+  result.logged = req.session && req.session.currentUser;
+  result.guide =
+    req.session &&
+    req.session.currentUser &&
+    req.session.currentUser.role === "GUIDE";
+  result.admin =
+    req.session &&
+    req.session.currentUser &&
+    req.session.currentUser.role === "ADMIN";
+  result.rights =
+    req.session &&
+    req.session.currentUser &&
+    (req.session.currentUser.role === "GUIDE" ||
+      req.session.currentUser.role === "ADMIN");
+  result.userId =
+    req.session && req.session.currentUser ? req.session.currentUser._id : null;
 
-    res.locals.result = result
+  res.locals.result = result;
 
+  next();
+};
 
-    next()
-}
-
-module.exports = { updateLoggedUser }
+module.exports = { updateLoggedUser };

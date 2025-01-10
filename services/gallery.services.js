@@ -1,90 +1,88 @@
-const axios = require('axios');
-const isValidGalleryId = require('../utils/validId');
+const axios = require("axios");
+// const isValidGalleryId = require("../utils/validId");
 
-const COLLECTIONAPI_URL = "https://collectionapi.metmuseum.org/public/collection/v1";
+const COLLECTIONAPI_URL =
+  "https://collectionapi.metmuseum.org/public/collection/v1";
 
 class GalleryService {
-    constructor() {
-        this.axiosApp = axios.create({
-            baseURL: COLLECTIONAPI_URL
+  constructor() {
+    this.axiosApp = axios.create({
+      baseURL: COLLECTIONAPI_URL,
+    });
+  }
+
+  getFullGallery() {
+    return this.axiosApp.get("/objects");
+  }
+
+  findOneOfGalleryById(gallery_id) {
+    return this.axiosApp.get(`/objects/${gallery_id}`);
+  }
+
+  findOneOfGalleryByTitle(search) {
+    return this.axiosApp.get(`/search?isHighlight=true&&q=${search}`);
+  }
+  findOneOfGalleryByAuthor(author) {
+    return this.axiosApp.get(
+      `/search?author=true&highlight=true&artistOrCulture=true&q=${author}`
+    );
+  }
+  findByTitle(search, quantity) {
+    return this.findOneOfGalleryByTitle(search)
+      .then(({ data }) => {
+        const selectedItems = data.objectIDs.slice(0, quantity);
+
+        const verifiedItems = selectedItems.map((elm) => {
+          return this.findOneOfGalleryById(elm)
+            .then((response) => response.data.objectID)
+            .catch(() => false);
+        });
+
+        return Promise.all(verifiedItems);
+      })
+      .then((response) => {
+        if (response) {
+          console.log("respuestaaaaa--->>>>", response);
+          const existingItems = response.filter((itemExists) => itemExists);
+          const itemsDetails = existingItems.map((itemId) =>
+            this.findOneOfGalleryById(itemId)
+          );
+
+          return Promise.all(itemsDetails);
+        }
+      })
+      .catch((err) =>
+        console.log("Error en el servicio!!!!!!!!!!!!!!!!!!!!!!!!", err)
+      );
+  }
+  findByAuthor(author, quantity) {
+    return this.findOneOfGalleryByAuthor(author).then(({ data }) => {
+      const selectedItems = data.objectIDs.slice(0, quantity);
+
+      const verifiedItems = selectedItems.map((elm) => {
+        return this.findOneOfGalleryById(elm)
+          .then((response) => response.data.objectID)
+          .catch(() => false);
+      });
+
+      return Promise.all(verifiedItems)
+        .then((response) => {
+          const existingItems = response.filter((itemExists) => itemExists);
+          const itemsDetails = existingItems.map((itemId) =>
+            this.findOneOfGalleryById(itemId)
+          );
+
+          return Promise.all(itemsDetails);
         })
-    }
-
-    getFullGallery() {
-        return this.axiosApp.get('/objects')
-    }
-
-    findOneOfGalleryById(gallery_id) {
-        return this.axiosApp.get(`/objects/${gallery_id}`)
-    }
-
-    findOneOfGalleryByTitle(search) {
-        return this.axiosApp.get(`/search?isHighlight=true&&q=${search}`)
-    }
-    findOneOfGalleryByAuthor(author) {
-
-        return this.axiosApp.get(`/search?author=true&highlight=true&artistOrCulture=true&q=${author}`)
-    }
-    findByTitle(search, quantity) {
-
-        return this.findOneOfGalleryByTitle(search)
-            .then(({ data }) => {
-                const selectedItems = data.objectIDs.slice(0, quantity)
-
-                const verifiedItems = selectedItems.map(elm => {
-                    return this.findOneOfGalleryById(elm)
-                        .then(response => response.data.objectID)
-                        .catch(() => false)
-                })
-
-                return Promise.all(verifiedItems)
-            })
-            .then(response => {
-                const existingItems = response.filter(itemExists => itemExists)
-                const itemsDetails = existingItems.map(itemId => this.findOneOfGalleryById(itemId))
-
-                return Promise.all(itemsDetails)
-            })
-            .catch(err => console.log('Error en el servicio!!!!!!!!!!!!!!!!!!!!!!!!', err))
-    }
-    findByAuthor(author, quantity) {
-
-        return this.findOneOfGalleryByAuthor(author)
-            .then(({ data }) => {
-                const selectedItems = data.objectIDs.slice(0, quantity)
-
-                const verifiedItems = selectedItems.map(elm => {
-                    return this.findOneOfGalleryById(elm)
-                        .then(response => response.data.objectID)
-                        .catch(() => false)
-                })
-
-                return Promise.all(verifiedItems)
-                    .then(response => {
-                        const existingItems = response.filter(itemExists => itemExists)
-                        const itemsDetails = existingItems.map(itemId => this.findOneOfGalleryById(itemId))
-
-                        return Promise.all(itemsDetails)
-                    })
-                    .catch(err => console.log('Error en el servicio!!!!!!!!!!!!!!!!!!!!!!!!', err))
-            })
-    }
+        .catch((err) =>
+          console.log("Error en el servicio!!!!!!!!!!!!!!!!!!!!!!!!", err)
+        );
+    });
+  }
 }
-const galleryService = new GalleryService()
+const galleryService = new GalleryService();
 
-module.exports = galleryService
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = galleryService;
 
 // const BROKEN_IMG_URL = "https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg";
 
@@ -145,7 +143,6 @@ module.exports = galleryService
 //     return response.data;
 // }
 
-
 // module.exports.author = async (req, res, next) => {
 //     const author = req.query.author;
 //     const postList = [];
@@ -165,8 +162,3 @@ module.exports = galleryService
 
 //     res.render("Post/postList", { postList, author, nResults });
 // }
-
-
-
-
-

@@ -1,87 +1,82 @@
 <div class="page-content">
-    <div class="container ">
-        <div class="center">
-            <div class="row">
+  <div class="container">
+    <div class="center">
+      <div class="row">
 
-                <div class="col md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{userById.avatar}}" class="card-img-top marginIm mt-3" alt="{{userById.username}}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{userById.username}}</h5>
-                            <hr>
-                            <p>{{userById.role}}</p>
-                            <p class="card-text">{{userById.about}}</p>
-                            <a href="/profile/list" class="btn btn-dark ">Go back</a>
-
-
-                        </div>
-                    </div>
-                </div>
-                {{!-- render de usuario --}}
-
-
-                <div class="col md-4 whiteBG">
-                    {{#if profile}}
-
-                    <form action="/profile/edit/{{userById._id}}" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="usernameInput" class="form-label">Edit your username</label>
-                            <input type="text" class="form-control" value="{{userById.username}}" id="usernameInput"
-                                name="username">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="avatar" class="form-label">Profile picture</label>
-                            <input type="file" class="form-control" id="avatar" name="avatar">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="descriptionInput" class="form-label">Change your description</label>
-                            <input type="text" value="{{userById.about}}" class="form-control" id="descriptionInput"
-                                rows="3" name="about">
-                        </div>
-
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-dark block">Submit</button>
-                        </div>
-                    </form>
-
-                    {{/if}}
-                    {{!--
-                </div> --}}
-                <p class="mt-4">Your favorites ArtWorks:</p>
-                <p>{{#each favoritesItems}}
-                    {{#if primaryImage}}
-                    <a href="/gallery/details/{{objectID}}"><img class="imgFav  mr-3" src="{{primaryImage}}"> </a>
-                    {{else}} <a href="/gallery/details/{{objectID}}"><img class="imgFav mt-4 mr-3"
-                            src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900"
-                            alt="{{title}}"></a>{{/if}}
-                    {{/each}}
-                </p>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{{userById.avatar}}" class="card-img-profile marginIm mt-3" alt="{{userById.username}}" />
+            <div class="card-body">
+              <h5 class="card-title">{{userById.username}}</h5>
+              <hr />
+              <p>{{userById.role}}</p>
+              <p class="card-text">{{userById.about}}</p>
+              <a href="/profile/list" class="btn btn-dark">Go back</a>
 
             </div>
-            {{#if isAdmin}}
-            <div class="col md-4 ">
-
-                <form class="mt-4" action="/profile/edit/rol/{{userById._id}}" method="POST">
-                    <select name="role">
-                        <option value="USER">USER</option>
-                        <option value="GUIDE">GUIDE</option>
-                        <option value="ADMIN">ADMIN</option>
-                    </select>
-                    <input type="submit" class="btn btn-dark block btn-sm" value="Change role">
-                </form>{{/if}}
-                {{#if profile}}
-
-                <form action="/profile/delete/{{userById._id}}" method="POST" class="mt-2">
-                    <input type="submit" value="Delete" class="btn btn-danger btn-sm">
-                </form>
-
-            </div>
-            {{/if}}
-
+          </div>
         </div>
 
+        <div class="col-md-8 whiteBG">
+          {{#if profile}}
+
+          <form action="/profile/edit/{{userById._id}}" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="usernameInput" class="form-label">Edit your username</label>
+              <input type="text" class="form-control" value="{{userById.username}}" id="usernameInput"
+                name="username" />
+            </div>
+
+            <div class="mb-3">
+              <label for="avatar" class="form-label">Profile picture</label>
+              <input type="file" class="form-control" id="avatar" name="avatar" />
+            </div>
+
+            <div class="mb-3">
+              <label for="descriptionInput" class="form-label">Change your
+                description</label>
+              <input type="text" value="{{userById.about}}" class="form-control" id="descriptionInput" rows="3"
+                name="about" />
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-dark block">Submit</button>
+            </div>
+          </form>
+
+          {{/if}}
+          <p class="mt-4">Your favorites ArtWorks:</p>
+          <p>{{#each favoritesItems}}
+            {{#if primaryImage}}
+            <a href="/gallery/details/{{objectID}}"><img class="imgFav mr-3" src="{{primaryImage}}" />
+            </a>
+
+            {{else}}
+            <a href="/gallery/details/{{objectID}}"><img class="imgFav mt-4 mr-3"
+                src="https://pbs.twimg.com/media/EXy4I5NXYAAwDl8?format=jpg&name=900x900" alt="{{title}}" /></a>
+            {{/if}}
+            {{/each}}
+          </p>
+
+
+
+          <div class="col md-4">
+            {{#if isAdmin}}
+            <form class="mt-4" action="/profile/edit/rol/{{userById._id}}" method="POST">
+              <select name="role">
+                <option value="USER">USER</option>
+                <option value="GUIDE">GUIDE</option>
+                <option value="ADMIN">ADMIN</option>
+              </select>
+              <input type="submit" class="btn btn-dark block btn-sm" value="Change role" />
+            </form>{{/if}}
+            {{#if profile}}
+            <form action="/profile/delete/{{userById._id}}" method="POST" class="mt-2">
+              <input type="submit" value="Delete" class="btn btn-danger btn-sm" />
+            </form>
+            {{/if}}
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-</div>
+  </div>

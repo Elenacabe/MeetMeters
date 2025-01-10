@@ -1,12 +1,160 @@
+/* Estilos generales */
 body {
-  padding-top: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-family: 'Times New Roman';
+  font-family: "Georgia", serif;
+  background-color: #f5f5f5;
+  color: #333333;
+  margin: 0;
+  padding: 0;
 }
 
+.navbar {
+  background-color: #003153; /* Azul MET */
+  border-bottom: 3px solid #daa520; /* Dorado */
+}
+.alinear {
+  align-items: center;
+}
+.navbar-brand,
+.nav-link {
+  color: #ffffff !important;
+  font-weight: bold;
+}
 
+.nav-link:hover {
+  color: #daa520 !important;
+}
 
+.navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
 
+/* Galería */
+.container.bajito {
+  margin-top: 20px;
+  padding-bottom: 40px;
+}
+
+h2 {
+  color: #003153;
+  font-weight: bold;
+  border-bottom: 2px solid #daa520;
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 200px;
+  object-fit: cover;
+}
+.card-img-profile {
+  height: 300px;
+  object-fit: cover;
+}
+.card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #003153;
+}
+
+.card-text {
+  font-size: 0.9em;
+  color: #555555;
+}
+
+.btn {
+  background-color: #daa520;
+  color: #ffffff;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #c18e1a;
+  color: #ffffff;
+}
+
+/* Search Forms */
+.input-group .form-control {
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #e0e0e0;
+}
+
+.input-group .btn {
+  border-radius: 0 5px 5px 0;
+  background-color: #daa520;
+  border: 1px solid #daa520;
+  color: #ffffff;
+}
+
+.input-group .btn:hover {
+  background-color: #c18e1a;
+}
+
+/* Mensajes */
+.alert-danger {
+  color: #ffffff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  font-weight: bold;
+}
+
+/* Footer o secciones adicionales */
+.mainP {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-top: 2px solid #daa520;
+}
+
+h1.omg,
+h2.omg {
+  color: #003153;
+  font-weight: bold;
+}
+
+h2.omg a {
+  color: #daa520;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+h2.omg a:hover {
+  text-decoration: underline;
+}
+
+/* Mapa */
+#nyMap {
+  width: 100%;
+  height: 400px;
+  background-color: #e9ecef;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+}
+
+/* Otros ajustes */
+.page-content {
+  padding: 20px;
+}
+
+.gallery .card {
+  transition: transform 0.2s;
+}
+
+.gallery .card:hover {
+  transform: scale(1.05);
+}
+
+/* Estilos específicos existentes */
 .marginIm {
   margin: 18px;
   border-radius: 4px;
@@ -27,74 +175,6 @@ body {
 .imgList {
   max-width: 60px;
   max-height: 40px;
-}
-
-
-.mainP {
-  background-image: url("/images/ole.jpg");
-
-  margin-top: 10px;
-  background-size: cover;
-  padding-left: -30px;
-  margin-right: 0;
-  margin-left: 0;
-  overflow: hidden;
-}
-
-.yoursAlways {
-  text-align: right;
-}
-
-#nyMap {
-  height: 500px;
-}
-
-#theMap {
-  height: 280px;
-}
-
-.imgDet {
-  max-width: 400px;
-  max-height: 200px;
-}
-
-.maponchi {
-  border-radius: 12px;
-  border-width: 3px;
-  border-color: rgb(113, 113, 187);
-  border-style: solid;
-
-}
-
-.mapinchi {
-  border-radius: 12px;
-  border-width: 2px;
-  border-color: red;
-  border-style: solid;
-
-}
-
-.omg {
-  font-size: 2em;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  background-color: rgb(215, 215, 215);
-  margin-top: 40px;
-  border-radius: 13px;
-  padding: 10px;
-  text-align: center;
-}
-
-nav.navbar {
-  top: 0;
-  position: fixed;
-  width: 100%;
-  height: 49px;
-  z-index: 1;
-}
-
-.page-content {
-  padding: 20px 0 20px 0;
-  margin-top: 49px;
 }
 
 .lalala {
@@ -128,5 +208,10 @@ a {
 }
 
 h1 {
-  color: 15px;
+  color: #003153;
+}
+
+.chat {
+  background-color: #b6a2a2;
+  border-radius: 10px;
 }
