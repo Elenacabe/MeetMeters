@@ -45,6 +45,7 @@
           </form>
 
           {{/if}}
+          {{#if favoritesItems}}
           <p class="mt-4">Your favorites ArtWorks:</p>
           <p>{{#each favoritesItems}}
             {{#if primaryImage}}
@@ -57,7 +58,7 @@
             {{/if}}
             {{/each}}
           </p>
-
+          {{/if}}
 
 
           <div class="col md-4">

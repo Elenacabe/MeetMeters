@@ -7,7 +7,7 @@ const saltRounds = 10;
 
 // Signup
 router.get("/signUp", isLoggedOut, (req, res, next) =>
-  res.render("auth/signup")
+  res.render("Auth/signup")
 );
 router.post(
   "/signUp",
@@ -35,19 +35,19 @@ router.post(
 );
 
 // Login
-router.get("/logIn", isLoggedOut, (req, res, next) => res.render("auth/login"));
+router.get("/logIn", isLoggedOut, (req, res, next) => res.render("Auth/login"));
 router.post("/logIn", isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
 
   User.findOne({ email })
     .then((user) => {
       if (!user) {
-        res.render("auth/login", {
+        res.render("Auth/login", {
           errorMessage: "Email no registrado en la Base de Datos",
         });
         return;
       } else if (bcrypt.compareSync(password, user.password) === false) {
-        res.render("auth/login", {
+        res.render("Auth/login", {
           errorMessage: "La contraseña es incorrecta",
         });
         return;

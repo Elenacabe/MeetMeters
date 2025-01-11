@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect("/auth/logIn");
   }
-  res.render("Gallery/gallerylist", { user: req.session.currentUser });
+  res.render("Gallery/galleryList", { user: req.session.currentUser });
 });
 
 router.get("/search", (req, res, next) => {
@@ -24,8 +24,8 @@ router.get("/search", (req, res, next) => {
     .then((pictures) => {
       console.log(pictures);
       pictures
-        ? res.render("Gallery/gallerylist", { pictures, hasSearched: true })
-        : res.render("Gallery/gallerylist", { hasSearched: true });
+        ? res.render("Gallery/galleryList", { pictures, hasSearched: true })
+        : res.render("Gallery/galleryList", { hasSearched: true });
     })
     .catch((err) => {
       next(err);
@@ -67,7 +67,7 @@ router.get("/author", (req, res, next) => {
   GalleryService.findByAuthor(author, quantity)
     .then((picturesByAuthor) => picturesByAuthor.map((e) => e.data))
     .then((pictures) =>
-      res.render("Gallery/gallerylist", { pictures, hasSearched: true })
+      res.render("Gallery/galleryList", { pictures, hasSearched: true })
     )
     .catch((err) => {
       next(err);

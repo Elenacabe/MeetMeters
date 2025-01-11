@@ -27,6 +27,7 @@ class GalleryService {
       `/search?author=true&highlight=true&artistOrCulture=true&q=${author}`
     );
   }
+
   findByTitle(search, quantity) {
     return this.findOneOfGalleryByTitle(search)
       .then(({ data }) => {

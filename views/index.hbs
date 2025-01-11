@@ -1,27 +1,39 @@
-<div class="mainP">
-
+<div class="video-banner_videoBanner___HxFp undefined" data-sentry-component="VideoBanner"
+    data-sentry-source-file="index.jsx"><iframe role="presentation" class="video-banner_vimeoContainer__PD__H"
+        src="https://player.vimeo.com/video/1044750014?speed=0&amp;pip=0&amp;loop=1&amp;background=1&amp;app_id=122963"
+        height="100%" width="100%"></iframe>
     <div class="container">
 
+        <div class="heroText">
+            <h1>WELCOME TO MEETMETERS!!!</h1>
+            <p class="welcomeText">
+                Your comprehensive platform for meet new people while you're visiting the Met Museum!!
+                attend to events created by community, search your favorities works of art or your favorities paintors
+                on our gallery section, you can mark them as your favorities!!
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container ml-4">
+    <div class="mainP">
         <div class="row">
             <div class="col md-6">
-                <h2 class="omg">Feel free to explore the beauties of our museum.</h1>
+                <h2 class="omg">Feel free to explore the beauties of our museum</h2>
             </div>
             <div class="col md-6">
                 {{#unless result.logged}}
                 <h2 class="omg"> <a href="/auth/signUp">Join</a> our <a href="/auth/logIn">community</a> and enjoy
-                    guided visits and meet other Meters! </h2>{{/unless}}{{#if result.logged}}
-                <h2 class="omg">Welcome</h2>{{/if}}
+                    guided visits and meet other Meters! </h2>
+                {{/unless}}
+                {{#if result.logged}}
+                <h2 class="omg">Welcome</h2>
+                {{/if}}
             </div>
-
         </div>
-
-
         <div class="row">
             <figure id="nyMap" class="mt-5 mapinchi"></figure>
         </div>
-
     </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
