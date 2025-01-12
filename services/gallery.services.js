@@ -43,7 +43,6 @@ class GalleryService {
       })
       .then((response) => {
         if (response) {
-          console.log("respuestaaaaa--->>>>", response);
           const existingItems = response.filter((itemExists) => itemExists);
           const itemsDetails = existingItems.map((itemId) =>
             this.findOneOfGalleryById(itemId)

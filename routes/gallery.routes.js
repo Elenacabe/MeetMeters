@@ -22,7 +22,6 @@ router.get("/search", (req, res, next) => {
       }
     })
     .then((pictures) => {
-      console.log(pictures);
       pictures
         ? res.render("Gallery/galleryList", { pictures, hasSearched: true })
         : res.render("Gallery/galleryList", { hasSearched: true });
@@ -34,7 +33,7 @@ router.get("/search", (req, res, next) => {
 
 router.get("/details/:objectID", (req, res, next) => {
   const { objectID } = req.params;
-  if (req.session.currentUser.favorites == "undefined") {
+  if (req.session.currentUser.favorites == true) {
     const userFav = req.session.currentUser.favorites;
 
     GalleryService.findOneOfGalleryById(objectID)

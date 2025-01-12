@@ -1,41 +1,24 @@
-const metMuseum = { lat: 40.779546247874414, lng: -73.96322254582404 }
-let nyMap
+const metMuseum = { lat: 40.779546247874414, lng: -73.96322254582404 };
+let nyMap;
 function init() {
-    renderMap()
-    getMarkers()
+  renderMap();
+  getMarkers();
 }
 
 function renderMap() {
-
-    nyMap = new google.maps.Map(
-        document.querySelector('#nyMap'),
-        {
-            zoom: 11,
-            center: metMuseum,
-
-        }
-
-    )
-    new google.maps.Marker({
-        map: nyMap,
-        position: metMuseum,
-        title: "Met museum"
-    })
-}
-
-
-
-function getMarkers() {
-
-    axios
-        .get('/api/events')
-        .then(response => printEventMarkers(response.data))
-        .catch(err => console.log(err))
+  nyMap = new google.maps.Map(document.querySelector("#nyMap"), {
+    zoom: 11,
+    center: metMuseum,
+  });
+  new google.maps.Marker({
+    map: nyMap,
+    position: metMuseum,
+    title: "Met museum",
+  });
 }
 
 // function printPlacesMarkers(events) {
 //     console.log("estoy painting")
-
 
 //     events.forEach(elm => {
 

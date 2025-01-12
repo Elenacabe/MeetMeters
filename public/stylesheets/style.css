@@ -97,14 +97,34 @@ h2 {
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
-  margin: 10px;
+  margin: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  min-height: 570px;
+}
+.cardDetails {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  margin: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.cardEvents {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  margin: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  min-height: 570px;
 }
 
 .card-img-top {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  height: 200px;
+  height: 500px;
+  width: 300px;
   object-fit: cover;
 }
 
@@ -193,7 +213,8 @@ h2.omg a:hover {
 }
 
 .page-content {
-  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .gallery .card {
@@ -245,11 +266,13 @@ h2.omg a:hover {
   margin-right: 10px;
 }
 
-.gallery .card-img-top {
+.card-img {
   max-height: 400px;
-  max-width: 400px;
-  margin: 10px;
-  padding: 10px;
+  min-height: 300px;
+  /* max-width: 298.5px; */
+  width: 298.5px;
+  border-radius: 10px 10px 0px 0px;
+  object-fit: cover;
 }
 
 a {
@@ -263,4 +286,13 @@ h1 {
 .chat {
   background-color: #b6a2a2;
   border-radius: 10px;
+}
+.detailsBut {
+  width: 100%;
+  height: 100%; /* Asegúrate de que el contenedor tenga altura si es necesario */
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+}
+.maponchi2 {
 }

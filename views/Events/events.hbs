@@ -6,9 +6,10 @@
     <div class="container" style="overflow-y: scroll; width:80vw">
         <div class="row lalala text-center">
             {{#each events}}
-            <div class="card col-md-4 col-lg-4 mb-2" style="max-width: 300px; margin-right:60px;margin-bottom:20px">
+            <div class="cardEvents col-md-4 col-lg-4 mb-2"
+                style=" padding-left:0px;margin-right:60px;margin-bottom:20px">
 
-                <img src="{{cover}}" class="card-img-top mt-2 cardContent" alt="{{this.name}}">
+                <img src="{{cover}}" class="card-img" alt="{{this.name}}">
                 <div class="card-body cardContent">
                     <h5 class="card-title">{{name}}</h5>
                     <p class="card-text">{{tdescription}}</p>
