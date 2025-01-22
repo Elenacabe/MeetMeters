@@ -72,7 +72,6 @@ router.get("/author", (req, res, next) => {
       next(err);
     });
 });
-
 router.post("/favorites/:_artId", (req, res, next) => {
   const { _artId } = req.params;
   const currentUser = req.session.currentUser._id;
